@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invest in Health Equity — SSHCO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --navy:    #1a2744;
+  --navy2:   #0d1a35;
+  --teal:    #3ab5c6;
+  --teal2:   #2da0b0;
+  --gold:    #f5a623;
+  --gold2:   #e8961e;
+  --white:   #ffffff;
+  --offwhite:#f4f7fa;
+  --gray:    #e8edf4;
+  --muted:   #8a9ab5;
+  --body:    #2d3c55;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--offwhite);
+  color: var(--body);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ═══ NAVIGATION ══════════════════════════════════════════ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(13,26,53,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 40px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-cross {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+}
+.nav-cross div { border-radius: 2px; }
+.nq1 { background: #e84040; }
+.nq2 { background: var(--gold); }
+.nq3 { background: var(--teal); }
+.nq4 { background: #4a90d9; }
+
+.nav-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.nav-name span { color: var(--teal); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--teal); }
+
+.nav-cta {
+  background: var(--gold);
+  color: var(--navy) !important;
+  padding: 9px 22px;
+  border-radius: 5px;
+  font-weight: 700 !important;
+  transition: background 0.2s !important;
+}
+.nav-cta:hover { background: var(--gold2) !important; color: var(--navy) !important; }
+
+/* ═══ HERO ════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(150deg, #08112a 0%, #1a2744 55%, #1b3a55 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 120px 80px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -160px; right: -160px;
+  width: 700px; height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,181,198,0.13) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: 30%;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.07) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Animated teal orb */
+.hero-orb {
+  position: absolute;
+  right: 80px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(58,181,198,0.22), rgba(26,39,68,0.0) 70%);
+  border: 1px solid rgba(58,181,198,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pulse-orb 4s ease-in-out infinite;
+}
+
+.hero-orb::before {
+  content: '';
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  border: 1px solid rgba(58,181,198,0.10);
+  animation: pulse-orb 4s ease-in-out infinite 1s;
+}
+
+.hero-orb-inner {
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(58,181,198,0.25), rgba(26,39,68,0.1));
+  border: 1px solid rgba(58,181,198,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.orb-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+}
+
+.orb-label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  text-align: center;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  padding: 0 16px;
+}
+
+@keyframes pulse-orb {
+  0%, 100% { transform: translateY(-50%) scale(1); opacity: 1; }
+  50%       { transform: translateY(-52%) scale(1.03); opacity: 0.85; }
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 640px; }
+
+.hero-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 2px;
+  background: var(--gold);
+}
+
+.hero-h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.08;
+  margin-bottom: 28px;
+}
+
+.hero-h1 span { color: var(--teal); }
+
+.hero-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  margin-bottom: 44px;
+  max-width: 540px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+/* ═══ IMPACT TICKER ═══════════════════════════════════════ */
+.ticker {
+  background: var(--gold);
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ticker-num {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1;
+}
+
+.ticker-lbl {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: rgba(26,39,68,0.7);
+  line-height: 1.35;
+}
+
+.ticker-sep {
+  width: 1px; height: 32px;
+  background: rgba(26,39,68,0.2);
+}
+
+/* ═══ SECTION SCAFFOLD ════════════════════════════════════ */
+.section { padding: 100px 80px; }
+.section-navy { background: linear-gradient(150deg, #0d1a35, #1a2744); }
+.section-white { background: var(--white); }
+.section-off   { background: var(--offwhite); }
+
+.section-inner { max-width: 1060px; margin: 0 auto; }
+
+.eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+
+.eyebrow-gold { color: var(--gold); }
+
+.section-h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.section-h2-white { color: var(--white); }
+
+.rule {
+  width: 44px; height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin-bottom: 32px;
+}
+
+.rule-teal { background: var(--teal); }
+
+.lead {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--body);
+  max-width: 820px;
+  margin-bottom: 24px;
+}
+
+.lead-white { color: rgba(255,255,255,0.78); }
+
+/* ═══ MISSION SECTION ═════════════════════════════════════ */
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.mission-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 36px 40px;
+  border: 1px solid var(--gray);
+  box-shadow: 0 2px 16px rgba(26,39,68,0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.mission-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,39,68,0.10); }
+
+.mission-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: 16px 16px 0 0;
+}
+.mc-teal::before { background: var(--teal); }
+.mc-gold::before { background: var(--gold); }
+.mc-navy::before { background: var(--navy); }
+.mc-red::before  { background: #e84040; }
+
+.mission-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.mission-h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.mission-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.75;
+}
+
+/* ═══ WHY INVEST — NAVY ════════════════════════════════════ */
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 28px;
+  margin-top: 52px;
+}
+
+.why-card {
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px;
+  padding: 32px 28px;
+  background: rgba(255,255,255,0.04);
+  transition: background 0.2s, border-color 0.2s;
+}
+.why-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(58,181,198,0.3); }
+
+.why-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(58,181,198,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+.why-icon-gold { background: rgba(245,166,35,0.15); }
+
+.why-h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.why-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.75;
+}
+
+/* ═══ FUNDING TRACKS ══════════════════════════════════════ */
+.tracks-list { margin-top: 48px; display: flex; flex-direction: column; gap: 20px; }
+
+.track-item {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 28px 36px 28px 28px;
+  border: 1px solid var(--gray);
+  box-shadow: 0 2px 10px rgba(26,39,68,0.05);
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 24px;
+  align-items: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.track-item:hover { transform: translateX(4px); box-shadow: 0 4px 20px rgba(26,39,68,0.09); }
+
+.track-num-badge {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.tn-gold  { background: linear-gradient(135deg, var(--gold), var(--gold2)); }
+.tn-teal  { background: linear-gradient(135deg, var(--teal), var(--teal2)); }
+.tn-navy  { background: linear-gradient(135deg, #1e3a6a, var(--navy)); }
+.tn-red   { background: linear-gradient(135deg, #e84040, #c0392b); }
+.tn-green { background: linear-gradient(135deg, #27ae60, #1e8a4a); }
+
+.track-body {}
+.track-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.track-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.track-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13.5px;
+  color: var(--body);
+  line-height: 1.65;
+}
+
+.track-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tt-high   { background: rgba(245,166,35,0.12); color: #8a5c00; }
+.tt-urgent { background: #fff0f0; color: #c0392b; }
+.tt-growth { background: rgba(39,174,96,0.12); color: #1a7a45; }
+.tt-long   { background: rgba(58,181,198,0.12); color: #0d6e7e; }
+.tt-key    { background: rgba(26,39,68,0.08); color: var(--navy); }
+
+/* ═══ PRIORITY FUNDERS CARDS ══════════════════════════════ */
+.funders-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.funder-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 28px 28px 24px;
+  border: 1px solid var(--gray);
+  box-shadow: 0 2px 10px rgba(26,39,68,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.funder-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,39,68,0.10); }
+
+.funder-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.funder-name-lrg {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--navy);
+  line-height: 1.3;
+}
+
+.urgency-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.ud-red   { background: #e84040; }
+.ud-gold  { background: var(--gold); }
+.ud-teal  { background: var(--teal); }
+.ud-gray  { background: var(--muted); }
+
+.funder-card-desc {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.funder-card-footer {
+  padding-top: 10px;
+  border-top: 1px solid var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.funder-card-footer span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.ft-local { color: var(--teal); }
+.ft-nat   { color: var(--navy); }
+.ft-corp  { color: var(--gold2); }
+
+/* ═══ CORPORATE TIERS ═════════════════════════════════════ */
+.tiers-wrap {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.tier-card {
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.tier-card:hover { transform: translateY(-4px); }
+
+.tier-gold  { background: linear-gradient(160deg, #1a2744, #1e3a58); border: 1px solid rgba(245,166,35,0.3); }
+.tier-teal  { background: linear-gradient(160deg, #1a3a4a, #1e4a5a); border: 1px solid rgba(58,181,198,0.25); }
+.tier-navy  { background: linear-gradient(160deg, #0d1a35, #1a2744); border: 1px solid rgba(255,255,255,0.08); }
+.tier-green { background: linear-gradient(160deg, #0d2a1a, #1a3a28); border: 1px solid rgba(39,174,96,0.2); }
+
+.tier-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.tl-gold  { color: var(--gold); }
+.tl-teal  { color: var(--teal); }
+.tl-white { color: rgba(255,255,255,0.5); }
+.tl-green { color: #27ae60; }
+
+.tier-amount {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.1;
+}
+
+.tier-freq {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 18px;
+}
+
+.tier-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.tier-benefit {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.60);
+  line-height: 1.7;
+}
+
+/* ═══ PULL QUOTE ══════════════════════════════════════════ */
+.pull-quote-section {
+  background: linear-gradient(135deg, var(--navy), #1e3a58);
+  padding: 70px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pull-quote-section::before {
+  content: '\201C';
+  position: absolute;
+  top: -20px; left: 40px;
+  font-size: 220px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  color: rgba(58,181,198,0.07);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.pq-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.5;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  font-style: italic;
+}
+
+.pq-text span { color: var(--teal); }
+
+.pq-attr {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ═══ TIMELINE ════════════════════════════════════════════ */
+.timeline-wrap {
+  margin-top: 52px;
+  position: relative;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+
+.timeline-wrap::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(to right, var(--teal), var(--gold));
+  z-index: 0;
+}
+
+.tl-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 12px;
+}
+
+.tl-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  border: 3px solid var(--offwhite);
+}
+
+.tc-teal  { background: var(--teal); }
+.tc-gold  { background: var(--gold); color: var(--navy); }
+.tc-navy  { background: var(--navy); }
+
+.tl-col-phase {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.tl-col-phase.gold-p { color: var(--gold2); }
+
+.tl-col-h {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.tl-col-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: var(--body);
+  line-height: 1.65;
+}
+
+/* ═══ CLOSING CTA ═════════════════════════════════════════ */
+.closing {
+  background: linear-gradient(150deg, #08112a 0%, #1a2744 60%, #1b3a55 100%);
+  padding: 110px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,181,198,0.12), transparent 65%);
+}
+
+.closing::after {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.08), transparent 65%);
+}
+
+.closing-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+
+.closing-h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 22px;
+}
+
+.closing-h2 span { color: var(--teal); }
+
+.closing-p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: rgba(255,255,255,0.70);
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+.closing-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+}
+
+.contact-item a { color: var(--teal); text-decoration: none; }
+.contact-item a:hover { color: var(--teal2); }
+
+.contact-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+
+/* ═══ FOOTER ══════════════════════════════════════════════ */
+footer {
+  background: #060f1e;
+  padding: 28px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+footer p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+}
+
+footer a { color: var(--teal); text-decoration: none; }
+
+.footer-htc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-cross {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 16px; height: 16px;
+}
+.footer-cross div { border-radius: 1px; }
+.fq1 { background: #e84040; }
+.fq2 { background: var(--gold); }
+.fq3 { background: var(--teal); }
+.fq4 { background: #4a90d9; }
+
+/* ═══ RESPONSIVE ══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 100px 32px 64px; }
+  .hero-orb { display: none; }
+  .hero-h1 { font-size: 36px; }
+  .section { padding: 64px 32px; }
+  .mission-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .funders-grid { grid-template-columns: 1fr 1fr; }
+  .tiers-wrap { grid-template-columns: 1fr 1fr; }
+  .timeline-wrap { grid-template-columns: 1fr; }
+  .timeline-wrap::before { display: none; }
+  .track-item { grid-template-columns: 44px 1fr; }
+  .track-tag { display: none; }
+  .closing { padding: 72px 32px; }
+  .closing-h2 { font-size: 30px; }
+  footer { padding: 24px 32px; }
+  .pull-quote-section { padding: 52px 32px; }
+  .pq-text { font-size: 20px; }
+  .ticker { gap: 24px; padding: 18px 24px; }
+}
+
+@media (max-width: 560px) {
+  .why-grid { grid-template-columns: 1fr; }
+  .funders-grid { grid-template-columns: 1fr; }
+  .tiers-wrap { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ════════════════════════════════════════ -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <div class="nav-cross">
+      <div class="nq1"></div><div class="nq2"></div>
+      <div class="nq3"></div><div class="nq4"></div>
+    </div>
+    <div class="nav-name">South Side <span>Healthy</span><br>Community Organization</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Our Work</a></li>
+    <li><a href="#why">Why Invest</a></li>
+    <li><a href="#tracks">Strategy</a></li>
+    <li><a href="#funders">Funders</a></li>
+    <li><a href="#corporate">Corporate</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#contact" class="nav-cta">Partner With Us</a></li>
+  </ul>
+</nav>
+
+
+<!-- ══════════ HERO ═══════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Sustainability Strategy — 2026</div>
+    <h1 class="hero-h1">Investing in<br><span>Health Equity</span><br>on Chicago's<br>South Side</h1>
+    <p class="hero-sub">SSHCO is the care coordination infrastructure that thousands of South Side residents depend on. We are building the partnerships to sustain this work for generations to come.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Become a Partner</a>
+      <a href="#mission" class="btn-outline">Explore Our Work</a>
+    </div>
+  </div>
+  <div class="hero-orb">
+    <div class="hero-orb-inner">
+      <div class="orb-number">15</div>
+      <div class="orb-label">South Side<br>Zip Codes Served</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ IMPACT TICKER ══════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-item">
+    <span class="ticker-num">80,000+</span>
+    <span class="ticker-lbl">Patient<br>Visits</span>
+  </div>
+  <div class="ticker-sep"></div>
+  <div class="ticker-item">
+    <span class="ticker-num">7,000+</span>
+    <span class="ticker-lbl">Social Service<br>Connections</span>
+  </div>
+  <div class="ticker-sep"></div>
+  <div class="ticker-item">
+    <span class="ticker-num">2,800+</span>
+    <span class="ticker-lbl">Rides to<br>Appointments</span>
+  </div>
+  <div class="ticker-sep"></div>
+  <div class="ticker-item">
+    <span class="ticker-num">60+</span>
+    <span class="ticker-lbl">Providers<br>Subsidized</span>
+  </div>
+  <div class="ticker-sep"></div>
+  <div class="ticker-item">
+    <span class="ticker-num">21</span>
+    <span class="ticker-lbl">Active<br>Care Sites</span>
+  </div>
+  <div class="ticker-sep"></div>
+  <div class="ticker-item">
+    <span class="ticker-num">13</span>
+    <span class="ticker-lbl">Healthcare<br>Partners</span>
+  </div>
+</div>
+
+
+<!-- ══════════ OUR WORK ═══════════════════════════════════ -->
+<section class="section section-off" id="mission">
+  <div class="section-inner">
+    <div class="eyebrow">Our Work</div>
+    <h2 class="section-h2">A Proven Model.<br>A Community That Depends on It.</h2>
+    <div class="rule"></div>
+    <p class="lead">The South Side Healthy Community Organization is a collaborative of 13 healthcare providers — including safety-net hospitals, health systems, and federally qualified health centers — serving 15 zip codes where residents face some of the most profound health disparities in the country. SSHCO's community health workers and nurse care coordinators are embedded inside trusted community settings, connecting residents not just to doctors, but to the food, housing, transportation, and social support that account for 70 percent of a person's health outcomes.</p>
+    <div class="mission-grid">
+      <div class="mission-card mc-teal">
+        <span class="mission-icon">🩺</span>
+        <div class="mission-h3">Primary &amp; Preventive Care</div>
+        <p class="mission-p">We ensure every patient is connected to a trusted primary care physician — the first and most important step toward lasting wellness. Care coordinators navigate complex systems on behalf of patients who have historically been left behind.</p>
+      </div>
+      <div class="mission-card mc-gold">
+        <span class="mission-icon">🤱</span>
+        <div class="mission-h3">Maternal Health</div>
+        <p class="mission-p">We connect pregnant and postpartum mothers with comprehensive support including high-risk care, ultrasounds, doula services, and nutrition counseling — addressing Chicago's stark maternal health disparities directly.</p>
+      </div>
+      <div class="mission-card mc-navy">
+        <span class="mission-icon">🧠</span>
+        <div class="mission-h3">Mental &amp; Behavioral Health</div>
+        <p class="mission-p">Mental health is a holistic part of care at SSHCO. We integrate behavioral health into primary and emergency care services, removing the barriers that prevent South Side residents from accessing the support they need.</p>
+      </div>
+      <div class="mission-card mc-red">
+        <span class="mission-icon">🏠</span>
+        <div class="mission-h3">Social Determinants of Health</div>
+        <p class="mission-p">Housing, food access, transportation, employment, and financial stability — because 70% of health is shaped by life circumstances, SSHCO addresses those circumstances directly, partnering with dozens of community organizations across the South Side.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ PULL QUOTE ══════════════════════════════════ -->
+<div class="pull-quote-section">
+  <p class="pq-text">"This is not a request for charity. It is an offer of <span>partnership in a solution that is already proven</span> — one that every stakeholder in South Side health has a stake in sustaining."</p>
+  <p class="pq-attr">SSHCO Sustainability Committee, 2026</p>
+</div>
+
+
+<!-- ══════════ WHY INVEST ══════════════════════════════════ -->
+<section class="section section-navy" id="why">
+  <div class="section-inner">
+    <div class="eyebrow eyebrow-gold">Why Invest</div>
+    <h2 class="section-h2 section-h2-white">Six Compelling Reasons to<br>Partner with SSHCO</h2>
+    <div class="rule rule-teal"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">📊</div>
+        <div class="why-h3">Proven, Measurable Impact</div>
+        <p class="why-p">Over 80,000 patient visits coordinated, 7,000+ social service connections, and 2,800+ rides to appointments. The outcomes are documented and the model is validated at scale across 21 sites.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-h3">Collaborative Infrastructure</div>
+        <p class="why-p">No single hospital or clinic could replicate SSHCO's navigation infrastructure alone. Your investment funds the connective tissue that makes the entire South Side healthcare ecosystem work better.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon why-icon-gold">💰</div>
+        <div class="why-h3">Demonstrated Cost Savings</div>
+        <p class="why-p">By connecting patients to primary care and stabilizing social needs, SSHCO directly reduces costly emergency department visits and avoidable hospitalizations — delivering measurable ROI for managed care partners.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏙️</div>
+        <div class="why-h3">Geographic Focus &amp; Trust</div>
+        <p class="why-p">SSHCO has earned the trust of communities that had every reason not to trust healthcare institutions. That community trust — built over years — cannot be bought. It can only be sustained.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon why-icon-gold">🌟</div>
+        <div class="why-h3">ESG &amp; Community Benefit</div>
+        <p class="why-p">SSHCO provides corporations and health systems with a documented, credible vehicle for community benefit reporting, ESG commitments, and employee engagement — with outcomes data to match.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <div class="why-h3">30-Year Gap to Close</div>
+        <p class="why-p">Chicago's South Side has a 30-year life expectancy gap compared to the North Side. SSHCO is one of the few organizations directly attacking that gap at the community and clinical level simultaneously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FIVE TRACKS ════════════════════════════════ -->
+<section class="section section-white" id="tracks">
+  <div class="section-inner">
+    <div class="eyebrow">Sustainability Strategy</div>
+    <h2 class="section-h2">Five Parallel Tracks to<br>Long-Term Financial Sustainability</h2>
+    <div class="rule"></div>
+    <p class="lead">SSHCO's sustainability strategy is organized across five simultaneous tracks — each with its own timeline, relationship logic, and revenue potential. The approach is designed to diversify SSHCO's funding base, reduce dependence on any single source, and build the institutional relationships that will sustain the mission for decades.</p>
+    <div class="tracks-list">
+      <div class="track-item">
+        <div class="track-num-badge tn-gold">1</div>
+        <div class="track-body">
+          <div class="track-label">Track One</div>
+          <div class="track-name">Institutional Philanthropy &amp; Foundations</div>
+          <div class="track-desc">Targeted applications to local and national foundations with active grant cycles aligned to SSHCO's model — including the Coleman Foundation's 2026 Health Open Call, Polk Bros. Foundation's Life Expectancy Gap RFP, and BCBSIL's Blue Impact grants.</div>
+        </div>
+        <span class="track-tag tt-urgent">Act Now</span>
+      </div>
+      <div class="track-item">
+        <div class="track-num-badge tn-teal">2</div>
+        <div class="track-body">
+          <div class="track-label">Track Two</div>
+          <div class="track-name">Corporate Sponsorship &amp; ESG Investment</div>
+          <div class="track-desc">Structured tiered giving programs for corporations with documented health equity commitments or South Side presence — including AbbVie, Advocate Health Care, and Pritzker Traubert Foundation. Naming rights, brand recognition, and ESG reporting benefits at each tier.</div>
+        </div>
+        <span class="track-tag tt-high">Highest Potential</span>
+      </div>
+      <div class="track-item">
+        <div class="track-num-badge tn-navy">3</div>
+        <div class="track-body">
+          <div class="track-label">Track Three</div>
+          <div class="track-name">Individual Major Gift Cultivation</div>
+          <div class="track-desc">A disciplined major donor lifecycle — identification through wealth screening, qualification via board introductions, cultivation through site visits and storytelling, and an Equity Champions Council for donors committing $10,000+ annually.</div>
+        </div>
+        <span class="track-tag tt-long">Pipeline</span>
+      </div>
+      <div class="track-item">
+        <div class="track-num-badge tn-red">4</div>
+        <div class="track-body">
+          <div class="track-label">Track Four</div>
+          <div class="track-name">Health System Community Benefit Partnerships</div>
+          <div class="track-desc">Every nonprofit hospital has IRS-mandated community benefit obligations. Formalizing SSHCO as a documented line item in the community benefit portfolios of its 13 partner organizations turns an existing relationship into a sustainable funding stream.</div>
+        </div>
+        <span class="track-tag tt-key">Key Priority</span>
+      </div>
+      <div class="track-item">
+        <div class="track-num-badge tn-green">5</div>
+        <div class="track-body">
+          <div class="track-label">Track Five</div>
+          <div class="track-name">Medicaid Managed Care Organization Alignment</div>
+          <div class="track-desc">Illinois MCOs bear financial risk for the Medicaid population SSHCO serves. An economic impact analysis will quantify avoided ED costs, making the case for value-based investment partnerships with plans operating in SSHCO's 15 zip codes.</div>
+        </div>
+        <span class="track-tag tt-growth">Transformational</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ PRIORITY FUNDERS ═══════════════════════════ -->
+<section class="section section-off" id="funders">
+  <div class="section-inner">
+    <div class="eyebrow">Priority Funders</div>
+    <h2 class="section-h2">Where to Focus First</h2>
+    <div class="rule"></div>
+    <p class="lead">The following foundations represent the highest-priority institutional funding opportunities based on mission alignment, active grant cycles, and documented interest in Chicago South Side health equity. The red indicator signals an active or imminent deadline.</p>
+    <div class="funders-grid">
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Coleman Foundation</div>
+          <div class="urgency-dot ud-red"></div>
+        </div>
+        <p class="funder-card-desc">2026 Health Open Call investing in CHW-led models and care navigation across Cook County. Fall LOI deadline: June 1, 2026. Multi-year support considered. Program alignment is exceptional — this is SSHCO's model precisely.</p>
+        <div class="funder-card-footer">
+          <span class="ft-local">Chicago-Based</span>
+          <span class="funder-badge badge-urgent" style="font-family:Montserrat;font-size:10px;font-weight:700;background:#fff0f0;color:#c0392b;padding:3px 10px;border-radius:20px;">Act Now</span>
+        </div>
+      </div>
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Polk Bros. Foundation</div>
+          <div class="urgency-dot ud-red"></div>
+        </div>
+        <p class="funder-card-desc">$3M in RFPs through May 2026. Goal: "Closing the Life Expectancy Gap." Maps almost exactly onto SSHCO's geographic and demographic focus. Engage now to position as priority partner in the foundation's new 2026 strategy.</p>
+        <div class="funder-card-footer">
+          <span class="ft-local">Chicago-Based</span>
+          <span class="funder-badge badge-urgent" style="font-family:Montserrat;font-size:10px;font-weight:700;background:#fff0f0;color:#c0392b;padding:3px 10px;border-radius:20px;">Act Now</span>
+        </div>
+      </div>
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Blue Cross Blue Shield Illinois</div>
+          <div class="urgency-dot ud-gold"></div>
+        </div>
+        <p class="funder-card-desc">Nearly $10M in annual community grants. Blue Impact program open for 2026–27 applications. Also a major Medicaid insurer with a direct financial interest in SSHCO's outcomes. Dual grant and value-based partnership approach.</p>
+        <div class="funder-card-footer">
+          <span class="ft-corp">Corporate / Foundation</span>
+        </div>
+      </div>
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Healthy Communities Foundation</div>
+          <div class="urgency-dot ud-teal"></div>
+        </div>
+        <p class="funder-card-desc">Chicago-area health conversion foundation with 5-year general operating partnerships. Awarded $6.29M to advance health equity. Build the relationship now for consideration in future open cycles.</p>
+        <div class="funder-card-footer">
+          <span class="ft-local">Chicago-Based</span>
+        </div>
+      </div>
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Robert Wood Johnson Foundation</div>
+          <div class="urgency-dot ud-teal"></div>
+        </div>
+        <p class="funder-card-desc">The country's largest dedicated funder of health equity. Active opportunities in "Local Data for Equitable Communities." SSHCO's real-world model is a strong fit for RWJF's community learning agenda.</p>
+        <div class="funder-card-footer">
+          <span class="ft-nat">National</span>
+        </div>
+      </div>
+
+      <div class="funder-card">
+        <div class="funder-card-top">
+          <div class="funder-name-lrg">Kresge Foundation</div>
+          <div class="urgency-dot ud-teal"></div>
+        </div>
+        <p class="funder-card-desc">400+ grants annually averaging $160M in total. Dedicated community investment for health equity stream. Documented interest in housing-health intersections and Chicago community investment. High-value long-term relationship.</p>
+        <div class="funder-card-footer">
+          <span class="ft-nat">National</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ CORPORATE PARTNERS ═════════════════════════ -->
+<section class="section section-navy" id="corporate">
+  <div class="section-inner">
+    <div class="eyebrow eyebrow-gold">Corporate Partnership</div>
+    <h2 class="section-h2 section-h2-white">Partner with SSHCO at<br>a Level That Reflects Your Commitment</h2>
+    <div class="rule rule-teal"></div>
+    <p class="lead lead-white">Corporations give when they see alignment between a nonprofit's mission and their own business interests, brand values, and ESG commitments. SSHCO offers all of these — and the partnership can be structured at any level of investment.</p>
+    <div class="tiers-wrap">
+      <div class="tier-card tier-gold">
+        <div class="tier-label tl-gold">Founding Partner</div>
+        <div class="tier-amount">$250K+</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Presenting / Naming Rights</div>
+        <div class="tier-benefit">Named presenting sponsorship on a signature SSHCO program. Premier event recognition, co-branded patient materials, executive site visits, ESG reporting data, and featured placement in all public communications.</div>
+      </div>
+      <div class="tier-card tier-teal">
+        <div class="tier-label tl-teal">Champion</div>
+        <div class="tier-amount">$100K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Named Recognition</div>
+        <div class="tier-benefit">Named recognition on SSHCO materials and website. Prominent event sponsorship, employee volunteer day with care teams, quarterly impact briefings with senior SSHCO leadership.</div>
+      </div>
+      <div class="tier-card tier-navy">
+        <div class="tier-label tl-white">Community Leader</div>
+        <div class="tier-amount">$50K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Program Sponsorship</div>
+        <div class="tier-benefit">Sponsor a specific service — transportation rides, maternal health navigation, or social service connections. Event sponsorship recognition, digital and print donor wall placement, annual impact report inclusion.</div>
+      </div>
+      <div class="tier-card tier-green">
+        <div class="tier-label tl-green">Supporter</div>
+        <div class="tier-amount">$25K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Community Recognition</div>
+        <div class="tier-benefit">Website recognition, annual event listing, invitations to SSHCO community engagement events, and bi-annual impact updates demonstrating the tangible outcomes of your investment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ TIMELINE ═══════════════════════════════════ -->
+<section class="section section-white" id="timeline">
+  <div class="section-inner">
+    <div class="eyebrow">Implementation Plan</div>
+    <h2 class="section-h2">A 12-Month Roadmap</h2>
+    <div class="rule"></div>
+    <p class="lead">The sustainability plan is organized into five implementation phases, each building on the last. Every phase runs in parallel across multiple funding tracks — because one year demands urgency and discipline from day one.</p>
+    <div class="timeline-wrap">
+      <div class="tl-col">
+        <div class="tl-circle tc-teal">1–2</div>
+        <div class="tl-col-phase">Months 1–2</div>
+        <div class="tl-col-h">Build the Infrastructure</div>
+        <p class="tl-col-p">Sharpen the case for support. Develop impact narrative, donor materials, corporate deck. Board assessment and development officer engagement.</p>
+      </div>
+      <div class="tl-col">
+        <div class="tl-circle tc-teal">2–4</div>
+        <div class="tl-col-phase">Months 2–4</div>
+        <div class="tl-col-h">Submit Grant Applications</div>
+        <p class="tl-col-p">Coleman LOI, Polk Bros. RFP, BCBSIL Blue Impact, HCF and CCT relationship conversations, RWJF and Kellogg research.</p>
+      </div>
+      <div class="tl-col">
+        <div class="tl-circle tc-gold">3–6</div>
+        <div class="tl-col-phase gold-p">Months 3–6</div>
+        <div class="tl-col-h">Open Corporate Conversations</div>
+        <p class="tl-col-p">AbbVie via UChicago Medicine. Advocate Health Care partnership. Pritzker Traubert Foundation. Commission MCO economic impact analysis.</p>
+      </div>
+      <div class="tl-col">
+        <div class="tl-circle tc-gold">4–8</div>
+        <div class="tl-col-phase gold-p">Months 4–8</div>
+        <div class="tl-col-h">Launch Major Gift Program</div>
+        <p class="tl-col-p">Wealth screening, prospect identification, cultivation dinners, Equity Champions Council launch. First individual major gift asks.</p>
+      </div>
+      <div class="tl-col">
+        <div class="tl-circle tc-navy">6–12</div>
+        <div class="tl-col-phase">Months 6–12</div>
+        <div class="tl-col-h">Gala &amp; Year-End Close</div>
+        <p class="tl-col-p">Annual Impact Gala. Close corporate sponsorships. Year-end major gift push. Community benefit commitments. MCO partnerships. Set 2027 targets.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ CLOSING CTA ════════════════════════════════ -->
+<section class="closing" id="contact">
+  <div class="closing-inner">
+    <h2 class="closing-h2">The Work Is Proven.<br><span>The Time Is Now.</span></h2>
+    <p class="closing-p">SSHCO has earned the trust of thousands of South Side residents who had every reason not to trust a healthcare system that had historically underserved them. What the next twelve months require is not a proof of concept — the proof is already in the numbers, in the patient stories, in the appointments kept and crises averted across 21 sites and 15 zip codes. Your partnership is what sustains it.</p>
+    <div class="closing-btns">
+      <a href="https://southsidehealthycommunity.com" class="btn-primary">Visit SSHCO.org</a>
+      <a href="mailto:info@southsidehealthycommunity.org" class="btn-outline">Contact Us to Partner</a>
+    </div>
+    <div class="contact-bar">
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <span><a href="tel:8722744688">(872) 274-4688</a></span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span><a href="mailto:info@southsidehealthycommunity.org">info@southsidehealthycommunity.org</a></span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <span><a href="https://southsidehealthycommunity.com">southsidehealthycommunity.com</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════ FOOTER ═════════════════════════════════════ -->
+<footer>
+  <p>© 2026 South Side Healthy Community Organization &nbsp;·&nbsp; A 501(c)(3) nonprofit &nbsp;·&nbsp; <a href="https://southsidehealthycommunity.com">southsidehealthycommunity.com</a></p>
+  <div class="footer-htc">
+    <div class="footer-cross">
+      <div class="fq1"></div><div class="fq2"></div>
+      <div class="fq3"></div><div class="fq4"></div>
+    </div>
+    <p style="color:rgba(255,255,255,0.28);">Healthcare Transformation Collaborative</p>
+  </div>
+</footer>
+
+</body>
+</html>

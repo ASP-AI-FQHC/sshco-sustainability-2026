@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+// Auth guard — redirect to login if session not established
+(function() {
+  var auth = sessionStorage.getItem('sshco_auth');
+  var ts = parseInt(sessionStorage.getItem('sshco_ts') || '0');
+  var SESSION_DURATION = 4 * 60 * 60 * 1000; // 4 hours
+  if (auth !== 'granted' || (Date.now() - ts) > SESSION_DURATION) {
+    window.location.replace('login.html');
+  }
+})();
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSHCO Sustainability Strategy — Internal Committee Document</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --navy:    #1a2744;
+  --navy2:   #0d1a35;
+  --teal:    #3ab5c6;
+  --teal2:   #2da0b0;
+  --gold:    #f5a623;
+  --gold2:   #e8961e;
+  --white:   #ffffff;
+  --offwhite:#f4f7fa;
+  --gray:    #e8edf4;
+  --muted:   #8a9ab5;
+  --body:    #2d3c55;
+  --red:     #e84040;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: var(--offwhite);
+  color: var(--body);
+  line-height: 1.75;
+  font-size: 15px;
+}
+
+/* ─── COVER ──────────────────────────────────────── */
+.cover {
+  background: linear-gradient(155deg, #080f1e 0%, #1a2744 50%, #1e3a58 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -140px; right: -140px;
+  width: 560px; height: 560px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,181,198,0.13) 0%, transparent 68%);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245,166,35,0.09) 0%, transparent 68%);
+  pointer-events: none;
+}
+
+.cover-top {
+  padding: 48px 64px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; z-index: 2;
+}
+
+.logo-block { display: flex; flex-direction: column; gap: 4px; }
+.logo-name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); line-height: 1.3;
+}
+.logo-name span { color: var(--teal); }
+.logo-sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px; color: var(--muted);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+
+.htc-badge {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.11);
+  border-radius: 8px; padding: 10px 16px;
+}
+.htc-cross { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 26px; height: 26px; }
+.htc-cross div { border-radius: 2px; }
+.hq1 { background: var(--red); }
+.hq2 { background: var(--gold); }
+.hq3 { background: var(--teal); }
+.hq4 { background: #4a90d9; }
+.htc-label {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  color: var(--white); letter-spacing: 1px; line-height: 1.3;
+}
+.htc-label span { display:block; font-size:9px; font-weight:400; color:var(--muted); text-transform:uppercase; letter-spacing:1.5px; }
+
+/* CONFIDENTIAL BAND */
+.confidential-band {
+  background: rgba(232,64,64,0.15);
+  border: 1px solid rgba(232,64,64,0.35);
+  border-radius: 6px;
+  padding: 8px 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  position: relative; z-index: 2;
+  margin: 28px 64px 0;
+  align-self: flex-start;
+}
+.conf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
+.conf-text {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase; color: #ff8080;
+}
+
+.cover-main {
+  padding: 40px 64px 40px;
+  flex: 1; display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+
+.cover-eyebrow {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--teal);
+  margin-bottom: 16px;
+}
+
+.cover-title {
+  font-family: 'Montserrat', sans-serif; font-size: 46px; font-weight: 900;
+  color: var(--white); line-height: 1.08; margin-bottom: 10px; max-width: 680px;
+}
+.cover-title span { color: var(--teal); }
+
+.cover-subtitle {
+  font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 300;
+  color: rgba(255,255,255,0.65); margin-bottom: 36px; max-width: 580px; line-height: 1.4;
+}
+
+.cover-rule {
+  width: 56px; height: 4px; background: var(--gold); border-radius: 2px; margin-bottom: 36px;
+}
+
+.cover-desc {
+  font-family: 'Open Sans', sans-serif; font-size: 15px;
+  color: rgba(255,255,255,0.68); max-width: 580px; line-height: 1.85; margin-bottom: 44px;
+}
+
+/* COMMITTEE BLOCK */
+.committee-block {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 14px; padding: 28px 32px;
+  max-width: 640px;
+  margin-bottom: 20px;
+}
+.comm-label {
+  font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+}
+.comm-members { display: flex; gap: 28px; flex-wrap: wrap; }
+.comm-member { display: flex; flex-direction: column; gap: 3px; }
+.comm-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800;
+  color: var(--white); margin-bottom: 8px;
+  border: 2px solid rgba(255,255,255,0.15);
+}
+.av-teal  { background: linear-gradient(135deg, var(--teal), var(--teal2)); }
+.av-gold  { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); }
+.av-navy  { background: linear-gradient(135deg, #2a4080, var(--navy)); }
+.comm-name {
+  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--white);
+}
+.comm-role {
+  font-family: 'Open Sans', sans-serif; font-size: 11px; color: var(--muted);
+}
+
+/* STATS ROW */
+.cover-stats {
+  display: flex; gap: 36px; flex-wrap: wrap; margin-bottom: 0;
+}
+.cs-item { display: flex; flex-direction: column; gap: 2px; }
+.cs-num {
+  font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900;
+  color: var(--white); line-height: 1;
+}
+.cs-lbl {
+  font-family: 'Open Sans', sans-serif; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px; color: var(--teal);
+}
+.cs-sep { width:1px; background:rgba(255,255,255,0.12); height:36px; align-self:center; }
+
+.cover-bottom {
+  padding: 22px 64px; border-top: 1px solid rgba(255,255,255,0.09);
+  background: rgba(0,0,0,0.18);
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 2;
+}
+.cb-left {
+  font-family: 'Open Sans', sans-serif; font-size: 12px; color: rgba(255,255,255,0.38);
+}
+.cb-right {
+  font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
+}
+
+/* ─── PAGE WRAPPER ────────────────────────────────── */
+.page { max-width: 1040px; margin: 0 auto; padding: 64px 64px; }
+
+/* ─── SECTION SCAFFOLD ────────────────────────────── */
+.sec-off   { background: var(--offwhite); }
+.sec-white { background: var(--white); }
+.sec-navy  {
+  background: linear-gradient(150deg, #0d1a35, #1a2744);
+  position: relative; overflow: hidden;
+}
+.sec-navy::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,181,198,0.10), transparent 68%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+}
+.eyebrow-gold { color: var(--gold); }
+
+.sec-h2 {
+  font-family: 'Montserrat', sans-serif; font-size: 30px; font-weight: 800;
+  color: var(--navy); line-height: 1.2; margin-bottom: 12px;
+}
+.sec-h2-white { color: var(--white); }
+
+.rule { width: 44px; height: 3px; background: var(--gold); border-radius: 2px; margin-bottom: 32px; }
+.rule-teal { background: var(--teal); }
+
+.body-text {
+  font-family: 'Open Sans', sans-serif; font-size: 15px;
+  line-height: 1.85; color: var(--body); margin-bottom: 22px; max-width: 880px;
+}
+.body-text-white { color: rgba(255,255,255,0.78); }
+.body-text:last-child { margin-bottom: 0; }
+
+/* ─── CALLOUT BOXES ───────────────────────────────── */
+.callout-navy {
+  background: var(--navy); border-radius: 12px;
+  padding: 32px 40px; margin: 32px 0;
+  position: relative; overflow: hidden;
+}
+.callout-navy::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 5px; height: 100%;
+  background: var(--gold); border-radius: 12px 0 0 12px;
+}
+.callout-navy p {
+  font-family: 'Open Sans', sans-serif; font-size: 15.5px;
+  line-height: 1.8; color: rgba(255,255,255,0.85);
+  font-style: italic; margin: 0;
+}
+
+.callout-teal {
+  background: linear-gradient(to right, rgba(58,181,198,0.08), transparent);
+  border-left: 4px solid var(--teal);
+  border-radius: 0 10px 10px 0;
+  padding: 24px 32px; margin: 28px 0;
+}
+.callout-teal p {
+  font-family: 'Open Sans', sans-serif; font-size: 14.5px;
+  line-height: 1.8; color: var(--body); margin: 0;
+}
+
+.callout-alert {
+  background: rgba(232,64,64,0.07);
+  border-left: 4px solid var(--red);
+  border-radius: 0 10px 10px 0;
+  padding: 24px 32px; margin: 28px 0;
+}
+.callout-alert p {
+  font-family: 'Open Sans', sans-serif; font-size: 14.5px;
+  line-height: 1.8; color: var(--body); margin: 0;
+}
+.callout-alert strong { color: var(--red); }
+
+/* ─── IMPACT BAR ──────────────────────────────────── */
+.impact-bar {
+  background: linear-gradient(135deg, #0d1a35, #1a2744, #1e3a58);
+  border-radius: 16px; padding: 40px 48px; margin: 32px 0;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  position: relative; overflow: hidden;
+}
+.impact-bar::before {
+  content: ''; position: absolute; top:-60px; right:-60px;
+  width:200px; height:200px; border-radius:50%;
+  background: radial-gradient(circle, rgba(58,181,198,0.12), transparent 68%);
+}
+.is { text-align:center; padding: 6px; position:relative; }
+.is:not(:last-child)::after {
+  content:''; position:absolute; right:0; top:10%; bottom:10%;
+  width:1px; background:rgba(255,255,255,0.10);
+}
+.is-num {
+  font-family:'Montserrat',sans-serif; font-size:28px; font-weight:900;
+  color:var(--white); display:block; line-height:1.1; margin-bottom:5px;
+}
+.is-num span { color:var(--gold); }
+.is-lbl {
+  font-family:'Open Sans',sans-serif; font-size:10.5px;
+  color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.8px; line-height:1.4;
+}
+
+/* ─── SECTION DIVIDER ─────────────────────────────── */
+.sec-hr { border:none; height:1px; background: linear-gradient(to right, var(--gray), transparent); margin: 52px 0; }
+
+/* ─── TRACK CARDS ─────────────────────────────────── */
+.tracks-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:36px 0; }
+.track-card {
+  background:var(--white); border-radius:12px; padding:28px 30px;
+  border:1px solid var(--gray); box-shadow:0 2px 12px rgba(26,39,68,0.06);
+  position:relative; overflow:hidden;
+}
+.track-card::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:12px 12px 0 0;
+}
+.tc-gold::after   { background:var(--gold); }
+.tc-teal::after   { background:var(--teal); }
+.tc-navy::after   { background:var(--navy); }
+.tc-red::after    { background:var(--red); }
+.tc-green::after  { background:#27ae60; }
+.track-num { font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+.track-title { font-family:'Montserrat',sans-serif; font-size:16px; font-weight:800; color:var(--navy); margin-bottom:12px; line-height:1.3; }
+.track-body { font-family:'Open Sans',sans-serif; font-size:13.5px; line-height:1.75; color:var(--body); }
+.track-tag {
+  display:inline-block; margin-top:14px;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700;
+  letter-spacing:0.8px; text-transform:uppercase; padding:4px 12px; border-radius:20px;
+}
+.tt-urgent { background:rgba(232,64,64,0.10); color:#c0392b; }
+.tt-high   { background:rgba(245,166,35,0.12); color:#8a5c00; }
+.tt-med    { background:rgba(58,181,198,0.12); color:#0d6e7e; }
+.tt-long   { background:rgba(26,39,68,0.08); color:var(--navy); }
+.tt-grow   { background:rgba(39,174,96,0.12); color:#1a7a45; }
+
+/* ─── FUNDER TABLE ────────────────────────────────── */
+.funder-box {
+  background:var(--white); border-radius:16px;
+  padding:40px 44px; margin:32px 0;
+  border:1px solid var(--gray); box-shadow:0 4px 18px rgba(26,39,68,0.06);
+}
+.funder-group { margin-bottom: 36px; }
+.funder-group:last-child { margin-bottom: 0; }
+.fg-header {
+  display:flex; align-items:center; gap:14px;
+  margin-bottom:20px; padding-bottom:14px;
+  border-bottom:2px solid var(--gray);
+}
+.fg-icon {
+  width:38px; height:38px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0;
+}
+.fi-gold  { background:rgba(245,166,35,0.13); }
+.fi-teal  { background:rgba(58,181,198,0.13); }
+.fi-navy  { background:rgba(26,39,68,0.09); }
+.fi-green { background:rgba(39,174,96,0.11); }
+.fg-title { font-family:'Montserrat',sans-serif; font-size:15px; font-weight:800; color:var(--navy); }
+.fg-sub   { font-family:'Open Sans',sans-serif; font-size:12px; color:var(--muted); margin-top:2px; }
+
+.funder-row {
+  display:grid; grid-template-columns:210px 1fr auto;
+  gap:16px; padding:16px 0; border-bottom:1px solid var(--gray); align-items:start;
+}
+.funder-row:last-child { border-bottom:none; }
+.funder-name { font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:var(--navy); }
+.funder-desc { font-family:'Open Sans',sans-serif; font-size:13px; color:var(--body); line-height:1.65; }
+.funder-badge {
+  display:inline-block; padding:3px 10px; border-radius:20px;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700;
+  letter-spacing:0.5px; text-transform:uppercase; white-space:nowrap;
+}
+.fb-urgent { background:rgba(232,64,64,0.10); color:#c0392b; }
+.fb-high   { background:rgba(245,166,35,0.13); color:#8a5c00; }
+.fb-strong { background:rgba(58,181,198,0.13); color:#0d6e7e; }
+.fb-long   { background:rgba(26,39,68,0.08); color:var(--navy); }
+
+/* ─── TIMELINE ────────────────────────────────────── */
+.timeline { position:relative; padding-left:36px; margin:32px 0; }
+.timeline::before {
+  content:''; position:absolute; left:10px; top:8px; bottom:8px;
+  width:2px; background:linear-gradient(to bottom, var(--teal), var(--gold)); border-radius:2px;
+}
+.tl-item { position:relative; margin-bottom:30px; }
+.tl-item:last-child { margin-bottom:0; }
+.tl-dot {
+  position:absolute; left:-30px; top:4px;
+  width:12px; height:12px; border-radius:50%;
+  border:2.5px solid var(--offwhite); box-shadow:0 0 0 2px var(--teal); background:var(--teal);
+}
+.tl-dot.gold-d { background:var(--gold); box-shadow:0 0 0 2px var(--gold); }
+.tl-dot.navy-d { background:var(--navy); box-shadow:0 0 0 2px var(--muted); }
+.tl-phase { font-family:'Montserrat',sans-serif; font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:4px; }
+.tl-phase.gp { color:var(--gold2); }
+.tl-title { font-family:'Montserrat',sans-serif; font-size:15px; font-weight:700; color:var(--navy); margin-bottom:6px; }
+.tl-body  { font-family:'Open Sans',sans-serif; font-size:13.5px; color:var(--body); line-height:1.7; }
+
+/* ─── PULL QUOTE ──────────────────────────────────── */
+.pull-quote {
+  border-left:5px solid var(--teal); padding:20px 28px; margin:28px 0;
+  background:linear-gradient(to right, rgba(58,181,198,0.06), transparent);
+}
+.pull-quote p {
+  font-family:'Montserrat',sans-serif; font-size:17px; font-weight:600;
+  color:var(--navy); line-height:1.5; font-style:italic; margin:0;
+}
+
+/* ─── COMMITTEE ACTION BOX ────────────────────────── */
+.action-box {
+  background: linear-gradient(135deg, #f9f4e8, #fdf8ef);
+  border: 1px solid rgba(245,166,35,0.3);
+  border-radius: 12px; padding: 28px 32px; margin: 28px 0;
+}
+.action-box-header {
+  display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.action-icon { font-size: 20px; }
+.action-title {
+  font-family:'Montserrat',sans-serif; font-size:13px; font-weight:800;
+  color:var(--navy); letter-spacing:0.5px; text-transform:uppercase;
+}
+.action-body {
+  font-family:'Open Sans',sans-serif; font-size:14px;
+  color:var(--body); line-height:1.75; margin-bottom: 16px;
+}
+.action-body:last-child { margin-bottom: 0; }
+.action-owners {
+  display:flex; gap:10px; flex-wrap:wrap; padding-top:14px;
+  border-top:1px solid rgba(245,166,35,0.2);
+}
+.owner-chip {
+  display:flex; align-items:center; gap:7px;
+  background:var(--white); border:1px solid rgba(245,166,35,0.3);
+  border-radius:20px; padding:5px 14px;
+}
+.owner-initial {
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
+  color:var(--white);
+}
+.oi-sk { background:var(--teal); }
+.oi-ba { background:var(--gold); color:var(--navy); }
+.oi-gf { background:var(--navy); }
+.owner-name {
+  font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700;
+  color:var(--navy); letter-spacing:0.3px;
+}
+
+/* ─── CORPORATE TIER CARDS ────────────────────────── */
+.tier-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin:32px 0; }
+.tier-card {
+  border-radius:14px; padding:28px 22px; text-align:center;
+  position:relative; overflow:hidden;
+}
+.tier-gold  { background:linear-gradient(160deg,#1a2744,#1e3a58); border:1px solid rgba(245,166,35,0.28); }
+.tier-teal  { background:linear-gradient(160deg,#1a3a4a,#1e4a5a); border:1px solid rgba(58,181,198,0.22); }
+.tier-navy  { background:linear-gradient(160deg,#0d1a35,#1a2744); border:1px solid rgba(255,255,255,0.08); }
+.tier-green { background:linear-gradient(160deg,#0d2a1a,#1a3a28); border:1px solid rgba(39,174,96,0.18); }
+.tier-lbl {
+  font-family:'Montserrat',sans-serif; font-size:9px; font-weight:700;
+  letter-spacing:2.5px; text-transform:uppercase; margin-bottom:12px;
+}
+.tl-g { color:var(--gold); } .tl-t { color:var(--teal); }
+.tl-w { color:rgba(255,255,255,0.45); } .tl-gr { color:#27ae60; }
+.tier-amount { font-family:'Montserrat',sans-serif; font-size:24px; font-weight:900; color:var(--white); margin-bottom:4px; line-height:1.1; }
+.tier-freq   { font-family:'Open Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.4); margin-bottom:16px; }
+.tier-name   { font-family:'Montserrat',sans-serif; font-size:13px; font-weight:700; color:var(--white); margin-bottom:12px; }
+.tier-desc   { font-family:'Open Sans',sans-serif; font-size:12px; color:rgba(255,255,255,0.58); line-height:1.7; }
+
+/* ─── NAVY FULL-WIDTH ─────────────────────────────── */
+.navy-full {
+  background:linear-gradient(150deg,#0d1a35,#1a2744);
+  padding:64px;
+  position:relative; overflow:hidden;
+}
+.navy-full::before {
+  content:''; position:absolute; right:-80px; top:-80px;
+  width:300px; height:300px; border-radius:50%;
+  background:radial-gradient(circle, rgba(58,181,198,0.10), transparent 68%);
+}
+.navy-full .eyebrow { color:var(--gold); }
+.navy-full .sec-h2  { color:var(--white); }
+.navy-full .body-text { color:rgba(255,255,255,0.76); }
+.navy-full .rule { background:var(--teal); }
+
+/* ─── DOC FOOTER ──────────────────────────────────── */
+.doc-footer {
+  background:#060f1e; padding:24px 64px;
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.06);
+}
+.doc-footer p { font-family:'Open Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.30); }
+.doc-footer a { color:var(--teal); text-decoration:none; }
+
+/* ─── HIGHLIGHTS ──────────────────────────────────── */
+.hl-teal { color:var(--teal); font-weight:700; }
+.hl-gold { color:var(--gold); font-weight:700; }
+.hl-navy { color:var(--navy); font-weight:700; }
+.hl-red  { color:var(--red);  font-weight:700; }
+
+/* ─── PRINT ───────────────────────────────────────── */
+@media print {
+  @page { size: A4; margin: 0; }
+  .cover { page-break-after: always; min-height: 100vh; }
+  .funder-box, .action-box { page-break-inside: avoid; }
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 800px) {
+  .cover-top, .cover-main, .cover-bottom, .navy-full, .doc-footer { padding-left:32px; padding-right:32px; }
+  .cover-title { font-size:32px; }
+  .tracks-grid { grid-template-columns:1fr; }
+  .funder-row  { grid-template-columns:1fr; }
+  .tier-grid   { grid-template-columns:1fr 1fr; }
+  .impact-bar  { grid-template-columns:repeat(3,1fr); }
+  .page        { padding:40px 32px; }
+  .comm-members { gap:18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ COVER ═════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="logo-block">
+      <div class="logo-name">South Side <span>Healthy</span><br>Community Organization</div>
+      <div class="logo-sub">southsidehealthycommunity.com</div>
+    </div>
+    <div class="htc-badge">
+      <div class="htc-cross">
+        <div class="hq1"></div><div class="hq2"></div>
+        <div class="hq3"></div><div class="hq4"></div>
+      </div>
+      <div class="htc-label">HTC
+        <span>Healthcare Transformation<br>Collaborative</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="confidential-band">
+    <div class="conf-dot"></div>
+    <span class="conf-text">Internal Document — Sustainability Committee Use Only</span>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-eyebrow">Sustainability Committee — Working Strategy</div>
+    <div class="cover-title">SSHCO Financial<br><span>Sustainability</span><br>Strategy</div>
+    <div class="cover-subtitle">Philanthropy, Donor Development &amp; Corporate Partnership</div>
+    <div class="cover-rule"></div>
+    <div class="cover-desc">
+      This document is prepared exclusively for the SSHCO Sustainability Committee. It contains our comprehensive five-track fundraising strategy, a prioritized map of institutional and corporate funding targets, an individual major gift framework, and a 12-month action plan. It is intended as a living working document to guide the committee's outreach, relationship-building, and revenue development activities as we approach the one-year funding cliff.
+    </div>
+
+    <div class="committee-block">
+      <div class="comm-label">Sustainability Committee Members</div>
+      <div class="comm-members">
+        <div class="comm-member">
+          <div class="comm-avatar av-teal">SK</div>
+          <div class="comm-name">Selena King</div>
+          <div class="comm-role">Committee Member</div>
+        </div>
+        <div class="comm-member">
+          <div class="comm-avatar av-gold">BA</div>
+          <div class="comm-name">Brian Alexander</div>
+          <div class="comm-role">Committee Member</div>
+        </div>
+        <div class="comm-member">
+          <div class="comm-avatar av-navy">GF</div>
+          <div class="comm-name">Guy Fuller</div>
+          <div class="comm-role">Committee Member</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-stats">
+      <div class="cs-item">
+        <span class="cs-num">80,000+</span>
+        <span class="cs-lbl">Patient Visits</span>
+      </div>
+      <div class="cs-sep"></div>
+      <div class="cs-item">
+        <span class="cs-num">21</span>
+        <span class="cs-lbl">Active Care Sites</span>
+      </div>
+      <div class="cs-sep"></div>
+      <div class="cs-item">
+        <span class="cs-num">15</span>
+        <span class="cs-lbl">Zip Codes Served</span>
+      </div>
+      <div class="cs-sep"></div>
+      <div class="cs-item">
+        <span class="cs-num">13</span>
+        <span class="cs-lbl">Healthcare Partners</span>
+      </div>
+      <div class="cs-sep"></div>
+      <div class="cs-item">
+        <span class="cs-num">&lt; 12</span>
+        <span class="cs-lbl">Months of Funding</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cb-left">Prepared March 2026 &nbsp;·&nbsp; For internal use by the SSHCO Sustainability Committee only &nbsp;·&nbsp; Do not distribute</div>
+    <div class="cb-right">Confidential</div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 1 — PURPOSE & URGENCY ═════════════════ -->
+<div class="sec-off">
+  <div class="page">
+    <div class="eyebrow">Section One</div>
+    <h2 class="sec-h2">Our Purpose as a Committee &amp; the Urgency Before Us</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The three of us — Selena King, Brian Alexander, and Guy Fuller — have seen enough of this organization's work to know exactly what would be lost if SSHCO's funding were to expire without a clear path forward. We are not here to manage a sunset. We are here to prevent one. The sustainability of SSHCO is not a financial abstraction — it is a direct expression of our commitment to the South Side residents who have come to rely on this organization for the care, navigation, and support that no other single entity in their lives provides. With less than twelve months of current funding remaining, this committee is prepared to move with the clarity and urgency that this moment requires.
+    </p>
+
+    <div class="callout-alert">
+      <p><strong>The Funding Cliff:</strong> SSHCO's current state transformation funding expires within one year. This committee's work must close meaningful commitments across multiple funding tracks before that date. Waiting for a single large grant or a single anchor donor is not a strategy — it is a risk. Our approach must be diversified, parallel, and relentless.</p>
+    </div>
+
+    <p class="body-text">
+      The foundation of everything we do is a compelling, data-driven, and emotionally resonant case for support. Before we approach a single foundation, corporation, or individual donor, we must ensure that our materials are sharp, our impact narrative is tight, and our numbers are current. The story we have to tell is genuinely powerful: a collaborative of 13 safety-net healthcare providers serving 15 zip codes, connecting thousands of Medicaid-enrolled and uninsured residents not just to doctors but to food, housing, transportation, and the social scaffolding that accounts for 70 percent of a person's health outcomes. We are not asking for charity. We are offering proven infrastructure in exchange for partnership.
+    </p>
+
+    <p class="body-text">
+      The committee's work is organized around five parallel funding tracks, each requiring a distinct relationship strategy and a realistic timeline to commitment. Our goal is not to find one savior funder. It is to build a diversified revenue base that reduces SSHCO's vulnerability to the kind of funding disruption we are currently facing. What follows is our map for doing exactly that.
+    </p>
+  </div>
+</div>
+
+
+<!-- ══════ IMPACT BAR ════════════════════════════════════ -->
+<div style="padding:0 64px; background:var(--offwhite);">
+  <div class="impact-bar">
+    <div class="is">
+      <span class="is-num">80,000<span>+</span></span>
+      <span class="is-lbl">Patient Visits Coordinated</span>
+    </div>
+    <div class="is">
+      <span class="is-num">7,000<span>+</span></span>
+      <span class="is-lbl">Social Service Connections</span>
+    </div>
+    <div class="is">
+      <span class="is-num">2,800<span>+</span></span>
+      <span class="is-lbl">Rides to Medical Appointments</span>
+    </div>
+    <div class="is">
+      <span class="is-num">60<span>+</span></span>
+      <span class="is-lbl">Providers Subsidized</span>
+    </div>
+    <div class="is">
+      <span class="is-num">21</span>
+      <span class="is-lbl">Sites with Embedded Care Teams</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 2 — FIVE TRACKS ══════════════════════ -->
+<div class="sec-white">
+  <div class="page">
+    <div class="eyebrow">Section Two</div>
+    <h2 class="sec-h2">Our Five-Track Strategy</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The committee will work simultaneously across five distinct funding tracks. Each track has its own relationship logic, timeline, and revenue potential. None of them should wait for another to mature before we begin. The committee should assign primary ownership for each track among its three members, with all members supporting where their networks and relationships create openings.
+    </p>
+
+    <div class="tracks-grid">
+      <div class="track-card tc-gold">
+        <div class="track-num">Track One</div>
+        <div class="track-title">Institutional Philanthropy &amp; Foundations</div>
+        <div class="track-body">Targeted grant applications to local and national foundations with active cycles directly aligned to our model. Several have imminent deadlines we cannot afford to miss. This is our most immediate source of revenue and requires us to move on applications now.</div>
+        <span class="track-tag tt-urgent">Immediate Action Required</span>
+      </div>
+
+      <div class="track-card tc-teal">
+        <div class="track-num">Track Two</div>
+        <div class="track-title">Corporate Sponsorship &amp; ESG Investment</div>
+        <div class="track-body">Structured tiered giving programs for corporations with documented South Side health equity commitments. This track carries our highest single-gift potential. Relationships need to open now so they can close within our window. AbbVie and Advocate Health Care are our anchor targets.</div>
+        <span class="track-tag tt-high">Highest Gift Potential</span>
+      </div>
+
+      <div class="track-card tc-navy">
+        <div class="track-num">Track Three</div>
+        <div class="track-title">Individual Major Gift Cultivation</div>
+        <div class="track-body">A disciplined major donor lifecycle using SSHCO's existing network of 13 partner organizations, board members, and community stakeholders. Requires professional wealth screening, board introductions, site visit cultivation, and an Equity Champions Council structure for donors at $10,000 and above.</div>
+        <span class="track-tag tt-long">Pipeline Development</span>
+      </div>
+
+      <div class="track-card tc-red">
+        <div class="track-num">Track Four</div>
+        <div class="track-title">Health System Community Benefit</div>
+        <div class="track-body">Every nonprofit hospital in our collaborative has IRS-mandated community benefit obligations. We need to formalize SSHCO as a documented line item in each partner's community benefit portfolio. UChicago Medicine invested $715M in community benefits in FY2024 — we need to be formally part of that story.</div>
+        <span class="track-tag tt-high">Internal Priority</span>
+      </div>
+
+      <div class="track-card tc-green" style="grid-column:1/-1;">
+        <div class="track-num">Track Five</div>
+        <div class="track-title">Medicaid Managed Care Organization Investment</div>
+        <div class="track-body">Illinois MCOs bear direct financial risk for the same Medicaid population we serve. When SSHCO coordinates care — connecting patients to primary care, providing rides, stabilizing social needs — we directly reduce costly emergency department visits and avoidable hospitalizations. This is not a philanthropic case to make; it is an actuarial one. The committee should commission a brief economic impact analysis that quantifies the avoided costs SSHCO generates for managed care plans operating in our 15 zip codes, and use that as the entry point for value-based investment conversations.</div>
+        <span class="track-tag tt-grow">Transformational Long-Term Revenue</span>
+      </div>
+    </div>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">⚡</span>
+        <span class="action-title">Committee Action — Track Ownership</span>
+      </div>
+      <p class="action-body">The committee should assign primary track ownership at our next meeting. Each track requires consistent relationship management that a single owner can drive. All three members should review the full strategy, identify where their personal and professional networks create the strongest entry points, and come prepared to claim lead responsibility for at least one track.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 3 — INSTITUTIONAL FUNDERS ════════════ -->
+<div class="sec-off">
+  <div class="page">
+    <div class="eyebrow">Section Three</div>
+    <h2 class="sec-h2">Priority Institutional Funders</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The following foundations represent our highest-priority grant opportunities, organized by urgency and strategic fit. The committee needs to move quickly on the applications with imminent deadlines, while simultaneously opening relationship conversations with program officers at foundations where no open cycle is currently active. Grant funding alone will not close our sustainability gap, but it is our fastest and most straightforward near-term revenue source.
+    </p>
+
+    <div class="callout-teal">
+      <p>When approaching any foundation, we should lead with our outcomes data — the 80,000+ patient visits, the 7,000+ social service connections, and the 2,800+ rides — and follow immediately with the cost-savings argument. Program officers want to fund things that work. Our numbers prove that we do.</p>
+    </div>
+
+    <div class="funder-box">
+
+      <div class="funder-group">
+        <div class="fg-header">
+          <div class="fg-icon fi-gold">🚨</div>
+          <div>
+            <div class="fg-title">Act Now — Active Deadlines</div>
+            <div class="fg-sub">Applications due within the next 60–90 days. The committee must move on these immediately.</div>
+          </div>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Coleman Foundation</div>
+          <div class="funder-desc">The 2026 Health Open Call is our single most urgent grant opportunity. They are investing in CHW-led models, health navigation, and integrated care delivery across Cook County through 2027 — this is SSHCO's model described exactly. The fall cycle LOI deadline is June 1, 2026. Multi-year support up to two years is considered. We should complete the eligibility survey on their portal immediately and begin the LOI. If the spring cycle has passed, we must not miss the fall cycle under any circumstances.</div>
+          <span class="funder-badge fb-urgent">LOI Due June 1</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Polk Bros. Foundation</div>
+          <div class="funder-desc">Three RFPs totaling $3 million are being released between February and May 2026. One of their explicit new goals is "Closing the Life Expectancy Gap" — the exact language of the 30-year South/North Side disparity we are working to address. This maps almost perfectly onto our geographic and demographic focus. Engaging now also positions us as a priority partner when the foundation launches its full new strategy in fall 2026, which is a multi-year relationship opportunity.</div>
+          <span class="funder-badge fb-urgent">RFP Active</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Blue Cross Blue Shield Illinois</div>
+          <div class="funder-desc">BCBSIL's Blue Impact grant program is accepting 2026–27 applications now. They have awarded nearly $10 million in community grants with a specific focus on Medicaid populations and social determinants of health. Critically, BCBSIL is also a major Medicaid insurer in our zip codes — which means the pitch we make should be dual-tracked: a grant application AND a value-based investment conversation with their market-facing teams. We should pursue both pathways simultaneously.</div>
+          <span class="funder-badge fb-urgent">Applications Open</span>
+        </div>
+      </div>
+
+      <div class="funder-group">
+        <div class="fg-header">
+          <div class="fg-icon fi-teal">🤝</div>
+          <div>
+            <div class="fg-title">Priority Relationships to Open Now</div>
+            <div class="fg-sub">No active deadline, but relationship conversations should begin immediately to position SSHCO for future cycles.</div>
+          </div>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Healthy Communities Foundation</div>
+          <div class="funder-desc">A Chicago health conversion foundation that has built 5-year general operating grant partnerships with 32 organizations and awarded $6.29M to advance health equity in the region. Their most recent 5-year cohort launched in 2024, so an open cycle may not be immediately available — but cultivating the program officer relationship now is essential for consideration in the next cycle. Their mission and ours are essentially the same.</div>
+          <span class="funder-badge fb-high">Relationship Priority</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Chicago Community Trust</div>
+          <div class="funder-desc">CCT holds approximately $4 billion in assets and deploys discretionary grants focused on narrowing the wealth gap across the Chicago region. They are currently running the Resilient Chicago Fund open call. We need a senior relationship with their program officers whether or not an open cycle is immediately available — this is a long-term institutional partner that we should be formally connected to.</div>
+          <span class="funder-badge fb-high">Relationship Priority</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Robert Wood Johnson Foundation</div>
+          <div class="funder-desc">The country's largest dedicated funder of health equity. RWJF has active opportunities in "Local Data for Equitable Communities" and is open to Illinois-based organizations. SSHCO's real-world, community-embedded model could find strong resonance if positioned as contributing to a larger body of knowledge about what effective care coordination looks like at scale. We should review their active cycle pages and assess alignment.</div>
+          <span class="funder-badge fb-strong">National Target</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">W.K. Kellogg Foundation</div>
+          <div class="funder-desc">Offers community health and well-being grants ranging from $25,000 to $600,000 with a focus on racial equity and family economic security — themes woven throughout our maternal health, chronic disease, and social determinants work. Announced over $262 million in new grant commitments in 2025. This is a strong fit and worth a targeted outreach effort.</div>
+          <span class="funder-badge fb-strong">National Target</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Kresge Foundation</div>
+          <div class="funder-desc">400+ grants annually averaging $160M in total, with a dedicated community investment for health equity stream and documented interest in housing-health intersections and Chicago community investment. A high-value long-term relationship target. Their work on closing the racial wealth gap through community investment systems aligns directly with our social determinants model.</div>
+          <span class="funder-badge fb-long">Long-Term Target</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">AbbVie Foundation</div>
+          <div class="funder-desc">Beyond the annual Health Equity Accelerator program, AbbVie has already invested $75M with UChicago Medicine and $8M specifically for South Side health equity reduction. Our entry strategy is not the accelerator — it is a facilitated introduction through UChicago Medicine's leadership to AbbVie's corporate philanthropy team for a major multi-year commitment conversation. This is one of our highest-priority asks and should be handled at a leadership level.</div>
+          <span class="funder-badge fb-high">Strategic Entry via UCM</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">📋</span>
+        <span class="action-title">Committee Action — Grant Calendar</span>
+      </div>
+      <p class="action-body">The committee should build a master grant calendar at our next meeting, mapping every deadline, required document, and LOI date for each of the active opportunities above. The Coleman Foundation, Polk Bros., and BCBSIL applications need to be assigned to a lead writer immediately. We should also identify whether SSHCO has existing relationships with any of these program officers and leverage those connections before submitting cold applications.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 4 — CORPORATE STRATEGY ══════════════ -->
+<div class="navy-full">
+  <div class="page" style="padding-top:0;padding-bottom:0;">
+    <div class="eyebrow eyebrow-gold">Section Four</div>
+    <h2 class="sec-h2 sec-h2-white">Corporate Partnership &amp; Sponsorship Strategy</h2>
+    <div class="rule rule-teal"></div>
+
+    <p class="body-text body-text-white">
+      The corporate track is where our largest individual commitments will come from, but it requires a fundamentally different relationship logic than grant-seeking. Corporations give when they see alignment between our mission and their own business interests, brand values, employee engagement priorities, and ESG reporting needs. Our job is to make that alignment unmistakably clear — and to customize the conversation for each prospect rather than using a one-size-fits-all pitch.
+    </p>
+
+    <p class="body-text body-text-white">
+      <span class="hl-teal">AbbVie</span> is our single most important corporate prospect. They have already demonstrated extraordinary commitment to South Side health equity — $75 million to UChicago Medicine's cancer pavilion and a separate $8 million specifically to reduce healthcare disparities on the South Side. Since UChicago Medicine is our anchor partner, we have a direct and credible path to AbbVie's corporate philanthropy leadership through that relationship. The committee should request a senior-level introduction from UChicago Medicine's community benefit team, and the ask should be structured as a multi-year naming or presenting sponsorship — not a small grant. We should be thinking at a level commensurate with AbbVie's documented commitment in this space.
+    </p>
+
+    <p class="body-text body-text-white">
+      <span class="hl-gold">Advocate Health Care</span> has announced a $1 billion investment to expand access to primary care, specialty care, and wellness services on Chicago's South Side — explicitly designed to close the 30-year life expectancy gap. That is our mission. In the same geography. With the same population. The committee needs to initiate a strategic conversation with Advocate's community health and philanthropic leadership. The framing should be partnership, not grant: SSHCO's navigation infrastructure is a force multiplier for Advocate's capital investments, and the conversation should be held at a level where that logic lands.
+    </p>
+
+    <p class="body-text body-text-white">
+      The <span class="hl-teal">Pritzker Traubert Foundation</span> recently awarded $5 million to City Colleges of Chicago and Cook County Health for healthcare workforce development. SSHCO's community health workers are precisely the kind of frontline workforce the foundation invests in. The committee should explore board-level connections to Penny Pritzker's team and approach with a workforce development framing — positioning our CHW training and deployment model as the community workforce infrastructure piece that complements the institutional healthcare investments the foundation is already making.
+    </p>
+  </div>
+</div>
+
+<div class="sec-white">
+  <div class="page">
+    <div class="eyebrow">Corporate Prospect Map</div>
+    <h2 class="sec-h2">Priority Corporate Targets &amp; Entry Strategy</h2>
+    <div class="rule"></div>
+
+    <div class="funder-box" style="margin-top:0;">
+      <div class="funder-group">
+        <div class="fg-header">
+          <div class="fg-icon fi-gold">🏢</div>
+          <div>
+            <div class="fg-title">Tier One Corporate Prospects</div>
+            <div class="fg-sub">Highest gift potential — approach at senior leadership level with customized asks</div>
+          </div>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">AbbVie / AbbVie Foundation</div>
+          <div class="funder-desc">Already invested $75M + $8M in South Side and UChicago health equity. Multi-year naming sponsorship candidate. Entry via UChicago Medicine leadership introduction. Do not approach through the Accelerator program — seek a direct corporate philanthropy conversation. Target: $250,000+ multi-year commitment.</div>
+          <span class="funder-badge fb-urgent">Top Priority</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Advocate Health Care</div>
+          <div class="funder-desc">$1B South Side investment; shared geography and population. Position SSHCO as the navigation complement to Advocate's capital investments. Partnership conversation at VP or C-suite community health level. Frame as community benefit partnership, not a donation request. Target: $100,000–$250,000 annually.</div>
+          <span class="funder-badge fb-urgent">Top Priority</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Pritzker Traubert Foundation</div>
+          <div class="funder-desc">$34.5M annual grants; active healthcare workforce investment. CHW workforce development is our connection point. Board-to-board introduction is the ideal entry. Engage through any committee member who has connections to Penny Pritzker's philanthropic team. Target: $100,000+ commitment.</div>
+          <span class="funder-badge fb-high">High Priority</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Blue Cross Blue Shield Illinois</div>
+          <div class="funder-desc">Active corporate giving program plus direct financial interest as a Medicaid insurer in our zip codes. Pursue simultaneously as a grantmaker (Blue Impact) and as a value-based investment partner. The business case — reduced ED utilization — is the entry point for the market-facing team conversation. Target: $50,000–$100,000.</div>
+          <span class="funder-badge fb-high">Dual Approach</span>
+        </div>
+
+        <div class="funder-row">
+          <div class="funder-name">Illinois Medicaid MCOs</div>
+          <div class="funder-desc">Meridian Health, Aetna Better Health, Molina Healthcare, and others bear financial risk for the patients we serve. Commission a brief economic impact analysis first — then open conversations about value-based partnership agreements. This is our most transformational long-term revenue track and requires the most preparation before we approach.</div>
+          <span class="funder-badge fb-strong">Build the Case First</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="sec-hr">
+
+    <div class="eyebrow">Sponsorship Structure</div>
+    <h2 class="sec-h2">Proposed Corporate Giving Tiers</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      We need a formal tiered sponsorship program in place before we begin corporate conversations — so that when we sit across from a corporate giving officer, we can hand them a clear menu of options with defined benefits, recognition packages, and naming opportunities. The structure below is our starting proposal. The committee should finalize the benefits at each tier before any corporate outreach begins.
+    </p>
+
+    <div class="tier-grid">
+      <div class="tier-card tier-gold">
+        <div class="tier-lbl tl-g">Founding Partner</div>
+        <div class="tier-amount">$250K+</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Presenting / Naming Rights</div>
+        <div class="tier-desc">Named presenting sponsorship on a signature SSHCO program or initiative. Premier annual event recognition, co-branded patient outreach materials, quarterly executive briefings, ESG impact data package, featured in all public communications.</div>
+      </div>
+      <div class="tier-card tier-teal">
+        <div class="tier-lbl tl-t">Champion</div>
+        <div class="tier-amount">$100K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Named Recognition</div>
+        <div class="tier-desc">Named recognition on all SSHCO materials and website. Prominent annual event sponsorship, employee volunteer day with SSHCO care teams, community benefit reporting data, semi-annual leadership impact briefings.</div>
+      </div>
+      <div class="tier-card tier-navy">
+        <div class="tier-lbl tl-w">Community Leader</div>
+        <div class="tier-amount">$50K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Program Sponsorship</div>
+        <div class="tier-desc">Sponsor a specific service area: transportation rides, maternal health navigation, or social determinants connections. Event recognition, digital and print donor wall, annual impact report inclusion.</div>
+      </div>
+      <div class="tier-card tier-green">
+        <div class="tier-lbl tl-gr">Supporter</div>
+        <div class="tier-amount">$25K</div>
+        <div class="tier-freq">per year</div>
+        <div class="tier-name">Community Recognition</div>
+        <div class="tier-desc">Website and event recognition, invitation to SSHCO community engagement events, bi-annual impact update demonstrating the tangible outcomes of the investment.</div>
+      </div>
+    </div>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">🏢</span>
+        <span class="action-title">Committee Action — Corporate Outreach</span>
+      </div>
+      <p class="action-body">Before any corporate outreach begins, the committee needs to: finalize the sponsorship tier benefits document; identify which committee member has the strongest entry point at each target company; draft a customized one-page corporate partnership overview for AbbVie and Advocate specifically; and request AbbVie introduction through UChicago Medicine leadership within the next 30 days. We should have at least two corporate conversations open within 60 days.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 5 — INDIVIDUAL MAJOR GIFTS ═══════════ -->
+<div class="sec-off">
+  <div class="page">
+    <div class="eyebrow">Section Five</div>
+    <h2 class="sec-h2">Individual Major Gift Program</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The individual major gift track requires the longest cultivation runway, which is exactly why we need to begin it immediately. Chicago has a deep and active philanthropic community with documented interest in health equity, and our network of 13 partner organizations, community stakeholders, event attendees, and professional contacts contains high-potential major gift prospects we have not yet formally identified or engaged. The committee's first task in this track is not asking for money — it is identifying who we should be talking to and opening those conversations.
+    </p>
+
+    <p class="body-text">
+      The committee should also use this process to evaluate SSHCO's board composition. Board members who are recruited specifically for their network access — connections to corporate decision-makers, foundation trustees, and high-net-worth individuals who care about the South Side — are among our most valuable fundraising assets. Every board member should be expected to open doors and make introductions. Board recruitment is a fundraising activity and should be treated as one.
+    </p>
+
+    <div class="funder-box">
+      <div class="funder-group">
+        <div class="fg-header">
+          <div class="fg-icon fi-navy">🎯</div>
+          <div>
+            <div class="fg-title">The Major Donor Lifecycle — Our Process</div>
+            <div class="fg-sub">Five steps from prospect identification to repeat giving</div>
+          </div>
+        </div>
+
+        <div style="padding-top:8px;">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-phase">Step One</div>
+              <div class="tl-title">Prospect Identification &amp; Wealth Screening</div>
+              <div class="tl-body">We need to conduct a professional wealth screening of SSHCO's full database — enrolled patients, volunteers, event attendees, advisory contacts, and professional connections across our 13 partner organizations — using publicly available giving history data. This will surface individuals with both financial capacity and a personal connection to our mission. We should target a list of 25–50 qualified prospects from this process.</div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot"></div>
+              <div class="tl-phase">Step Two</div>
+              <div class="tl-title">Qualification Through Board Introductions</div>
+              <div class="tl-body">For each identified prospect, we determine the warmest path in — usually through a board member, a committee member, or a mutual contact within our partner network. The goal of the first conversation is connection, not solicitation. We are qualifying whether this is someone with genuine interest in the mission and the capacity to make a meaningful gift.</div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot gold-d"></div>
+              <div class="tl-phase gp">Step Three</div>
+              <div class="tl-title">Cultivation — Site Visits &amp; Patient Storytelling</div>
+              <div class="tl-body">Nothing moves a potential major donor more directly than hearing from someone whose life has been changed by the work they are being asked to support. We should invite qualified prospects to witness the work firsthand — a visit to a SSHCO care site, a conversation with a community health worker, or a small cultivation dinner where a patient shares their story. This is the step that transforms a prospective donor from intellectually interested to emotionally invested, and it cannot be rushed.</div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot gold-d"></div>
+              <div class="tl-phase gp">Step Four</div>
+              <div class="tl-title">Solicitation — The Personalized Ask</div>
+              <div class="tl-body">Each major gift ask must be personalized to the donor's specific interests and capacity. We go into every solicitation meeting with a defined request amount, a clear purpose for the gift, an impact statement, and a recognition plan. The ask should feel like a natural next step in a relationship that has already been built — not a transaction. We should target multi-year commitments at $10,000 and above. Our Equity Champions Council structure (see below) is the vehicle for recognizing and retaining these donors.</div>
+            </div>
+
+            <div class="tl-item">
+              <div class="tl-dot navy-d"></div>
+              <div class="tl-phase">Step Five</div>
+              <div class="tl-title">Stewardship — Turning One Gift Into Many</div>
+              <div class="tl-body">Major donors who receive regular, personalized updates on the outcomes their gifts are enabling — and who are invited back into the SSHCO community through special events and briefings — give repeatedly and at increasing levels over time. Stewardship is not a post-gift activity. It is the foundation of the next gift, and it begins the moment a commitment is made.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-teal">
+      <p>The committee should establish an <strong>Equity Champions Council</strong> — a named recognition vehicle for individual donors committing $10,000 or more annually. This creates a social incentive for giving at the major gift level and builds a self-reinforcing community of invested supporters who feel proud of their association with SSHCO's mission.</p>
+    </div>
+
+    <hr class="sec-hr">
+
+    <div class="eyebrow">Signature Event Strategy</div>
+    <h2 class="sec-h2">The Annual Impact Gala</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The committee should plan and execute SSHCO's inaugural Annual Impact Gala within the next six to eight months. A well-produced annual event is one of the highest-return fundraising investments a nonprofit can make. It serves as a deadline that focuses our entire cultivation calendar — giving us a natural moment to close corporate sponsorships and major gift asks that have been in conversation. It creates social proof that giving to SSHCO is a mark of civic leadership on the South Side. And it generates unrestricted revenue through ticket sales, sponsorships, and live and silent auction components.
+    </p>
+
+    <p class="body-text">
+      The event must feature patient voices prominently. A corporate giving officer or an individual major donor prospect will sit through a dinner — but they will remember a patient who stood at a podium and described what it felt like to finally have a care coordinator who knew their name, showed up when they needed a ride to their appointment, and helped them figure out how to keep the lights on while managing a chronic illness. That is the story that closes gifts. A realistic first-year gala revenue target, including ticket sales, corporate table sponsorships, and gifts closed in connection with the event, is $400,000 to $600,000.
+    </p>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">🎯</span>
+        <span class="action-title">Committee Action — Major Gifts &amp; Gala</span>
+      </div>
+      <p class="action-body">The committee should: authorize a professional wealth screening engagement at the next meeting; identify three to five board members who will serve as active major gift ambassadors; set a date for the inaugural Annual Impact Gala; assign a committee lead for event planning; and develop the Equity Champions Council recognition structure. These decisions need to be made in the next 30 days to keep pace with our timeline.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 6 — COMMUNITY BENEFIT ════════════════ -->
+<div class="sec-white">
+  <div class="page">
+    <div class="eyebrow">Section Six</div>
+    <h2 class="sec-h2">Health System Community Benefit Partnerships</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      Every nonprofit hospital in our collaborative is legally required under Section 501(r) of the Internal Revenue Code to document and report community benefit spending. Many health systems struggle to demonstrate that their community benefit dollars are creating measurable, population-level impact. SSHCO is precisely the kind of documented, scalable, outcomes-oriented program that a health system's community benefit officer needs to be able to include in their IRS 990 Schedule H report.
+    </p>
+
+    <p class="body-text">
+      UChicago Medicine invested <span class="hl-navy">$715 million in documented community benefits</span> in fiscal year 2024. The relationship between UChicago Medicine and SSHCO is already established and productive — with patient advocates actively connecting residents to our services and 7 in 10 referred patients enrolling. What we need to do is formalize SSHCO as a documented, named line item in UChicago Medicine's community benefit portfolio, with a multi-year financial commitment that reflects the measurable value we deliver. This is not a grant request — it is a community benefit partnership formalization conversation, and it should be held with UChicago Medicine's community benefit and legal leadership, not their philanthropy team.
+    </p>
+
+    <p class="body-text">
+      The same conversation needs to happen with each of the other 12 partner organizations in our collaborative. Each of them has their own community benefit obligations and their own interest in being able to point to SSHCO's outcomes as evidence that their community benefit spending is working. Formalizing SSHCO across multiple community benefit portfolios simultaneously reduces our dependence on any single partner and permanently embeds us in the South Side healthcare accountability ecosystem.
+    </p>
+
+    <div class="callout-navy">
+      <p>"Formalizing our role in partner hospitals' community benefit portfolios is not just a funding strategy. It is a recognition strategy — one that permanently positions SSHCO as an indispensable part of the South Side's health infrastructure in ways that are very difficult to defund."</p>
+    </div>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">🏥</span>
+        <span class="action-title">Committee Action — Community Benefit Meetings</span>
+      </div>
+      <p class="action-body">The committee should identify the community benefit officer and legal counsel at each of the 13 SSHCO partner organizations and request introductory meetings to discuss formalizing SSHCO's role in their community benefit portfolios. UChicago Medicine should be our first meeting given the depth of our existing relationship. We should go into each meeting with a one-page summary of the measurable outcomes we deliver on behalf of that institution's community benefit obligations specifically.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ SECTION 7 — EARNED REVENUE & CAPACITY ════════ -->
+<div class="sec-off">
+  <div class="page">
+    <div class="eyebrow">Section Seven</div>
+    <h2 class="sec-h2">Earned Revenue &amp; Organizational Capacity</h2>
+    <div class="rule"></div>
+
+    <p class="body-text">
+      The committee should also initiate a parallel conversation about earned revenue opportunities — not as a near-term fix for our funding gap, but as a 24–36 month development initiative that reduces our long-term dependence on any single source of philanthropic capital. SSHCO's community health worker training expertise, our shared technology platform, and our care coordination model represent intellectual capital that could be licensed or packaged for replication. Technical assistance fees, training and consulting revenue, and value-based payment arrangements with managed care organizations are all worthy of serious analysis.
+    </p>
+
+    <p class="body-text">
+      The committee should also be candid with SSHCO's leadership about the staffing question. The scope of work outlined in this strategy — simultaneous engagement across five funding tracks, major gift cultivation, corporate partnership development, event production, and community benefit conversations across 13 institutions — is not realistically executable by a three-person volunteer committee alone alongside the operational demands of running the organization. We should make a recommendation to leadership about engaging a professional fundraising consultant or an interim development director with specific experience in health equity nonprofit fundraising. This investment will return multiples of its cost and will signal to major funders that SSHCO is institutionally serious about sustainability.
+    </p>
+
+    <hr class="sec-hr">
+
+    <div class="eyebrow">12-Month Action Plan</div>
+    <h2 class="sec-h2">Implementation Timeline</h2>
+    <div class="rule"></div>
+
+    <div class="funder-box">
+      <div class="timeline" style="padding-left:40px;">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Months 1–2</div>
+          <div class="tl-title">Build the Foundation</div>
+          <div class="tl-body">Sharpen the case for support and update impact data. Develop professional donor materials, a corporate sponsorship deck, and a major gift one-pager. Assign track ownership among committee members. Evaluate board composition for fundraising capacity and begin targeted board recruitment. Recommend development officer or consultant engagement to SSHCO leadership. Finalize corporate sponsorship tier benefits.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-phase">Months 2–4</div>
+          <div class="tl-title">Submit Priority Grant Applications</div>
+          <div class="tl-body">Submit LOI to Coleman Foundation's fall 2026 cycle by June 1 deadline. Respond to active Polk Bros. Foundation RFP. Submit BCBSIL Blue Impact application. Open introductory relationship conversations with Healthy Communities Foundation and Chicago Community Trust program officers. Research RWJF and Kellogg Foundation application requirements and begin development.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot gold-d"></div>
+          <div class="tl-phase gp">Months 3–6</div>
+          <div class="tl-title">Open Corporate &amp; Community Benefit Conversations</div>
+          <div class="tl-body">Secure AbbVie introduction through UChicago Medicine within 30 days of this document's adoption. Initiate Advocate Health Care partnership conversation at senior level. Engage Pritzker Traubert Foundation through board or committee connections. Commission economic impact analysis for Medicaid MCO conversations. Begin community benefit formalization meetings with all 13 SSHCO partner organizations, starting with UChicago Medicine.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot gold-d"></div>
+          <div class="tl-phase gp">Months 4–8</div>
+          <div class="tl-title">Launch Major Gift Program</div>
+          <div class="tl-body">Authorize and complete professional wealth screening of SSHCO's full network database. Identify top 25–50 major gift prospects. Begin qualification through board member introductions and event invitations. Host first intimate cultivation dinner with patient storytelling. Formalize Equity Champions Council structure and recognition benefits. Set gala date and begin committee formation and event planning.</div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot navy-d"></div>
+          <div class="tl-phase">Months 6–12</div>
+          <div class="tl-title">Annual Gala, Year-End Push &amp; Commitments</div>
+          <div class="tl-body">Execute inaugural SSHCO Annual Impact Gala. Use event to recognize and close corporate sponsorship commitments. Execute year-end major gift asks for all qualified prospects. Close community benefit formalization agreements with partner institutions. Initiate first MCO value-based investment conversations. Evaluate all five tracks against targets and set 2027 multi-year sustainability goals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════ CLOSING ════════════════════════════════════════ -->
+<div class="navy-full">
+  <div class="page" style="padding-top:0;padding-bottom:0;">
+    <div class="eyebrow eyebrow-gold">Closing Note to the Committee</div>
+    <h2 class="sec-h2 sec-h2-white">The Work Is Proven. Now We Protect It.</h2>
+    <div class="rule rule-teal"></div>
+    <p class="body-text body-text-white">
+      Selena, Brian, and Guy — the organization we are working to sustain has already done the hardest part. It has earned the trust of thousands of South Side residents who had every reason not to trust a healthcare system that had historically underserved them. It has built the navigation infrastructure that no single hospital or clinic could replicate alone. It has proven, through 80,000+ patient interactions, that its model works. What the next twelve months require from this committee is not a proof of concept. The proof is already in the numbers, in the patient stories, in the appointments kept and the crises averted across 21 sites and 15 zip codes.
+    </p>
+    <p class="body-text body-text-white">
+      What is required from us is the strategic, relationship-centered, and professionally executed case that SSHCO's continued existence is not just a good thing for the South Side — it is an indispensable investment for every foundation, corporation, health system, and individual who cares about a more equitable Chicago. That case is eminently makeable. The relationships are within reach. The funders are active. The moment is now — and this committee is exactly the right team to seize it.
+    </p>
+  </div>
+</div>
+
+
+<!-- ══════ FOOTER ══════════════════════════════════════════ -->
+<div class="doc-footer">
+  <p>South Side Healthy Community Organization &nbsp;·&nbsp; Sustainability Committee — Internal Working Document &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Do Not Distribute</p>
+  <p><a href="https://southsidehealthycommunity.com">southsidehealthycommunity.com</a> &nbsp;·&nbsp; (872) 274-4688</p>
+</div>
+
+</body>
+</html>

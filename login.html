@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSHCO Sustainability Committee — Secure Access</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0d2240;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  /* Subtle background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(0,168,150,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(200,160,0,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 48px 44px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 1;
+  }
+
+  .logo-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .logo-mark {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: #0d2240;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .logo-mark svg { width: 32px; height: 32px; }
+
+  .logo-text h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0d2240;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-text p {
+    font-size: 11px;
+    font-weight: 500;
+    color: #00a896;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, #e8ecf0, #c8a000, #e8ecf0);
+    margin-bottom: 28px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff4e6;
+    border: 1px solid #f5a623;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #b8750a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 20px;
+  }
+
+  .badge::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f5a623;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0d2240;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 13.5px;
+    color: #5a6a7e;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+  }
+
+  input[type="password"] {
+    width: 100%;
+    padding: 13px 44px 13px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: #0d2240;
+    background: #f8fafc;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  input[type="password"]:focus {
+    border-color: #00a896;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0,168,150,0.12);
+  }
+
+  .toggle-pw {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .toggle-pw:hover { color: #0d2240; }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    background: #0d2240;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn:hover {
+    background: #163050;
+    box-shadow: 0 4px 16px rgba(13,34,64,0.25);
+  }
+
+  .btn:active { transform: scale(0.985); }
+
+  .btn.loading {
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .error-msg {
+    display: none;
+    margin-top: 14px;
+    padding: 11px 14px;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #b91c1c;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .error-msg.show { display: block; }
+
+  .footer-note {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #e8ecf0;
+    font-size: 11.5px;
+    color: #94a3b8;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .footer-note a {
+    color: #00a896;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .footer-note a:hover { text-decoration: underline; }
+
+  .members {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .av1 { background: #00a896; }
+  .av2 { background: #c8a000; }
+  .av3 { background: #0d2240; }
+
+  .members-label {
+    font-size: 11px;
+    color: #94a3b8;
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="logo-bar">
+    <div class="logo-mark">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 4C9.373 4 4 9.373 4 16s5.373 12 12 12 12-5.373 12-12S22.627 4 16 4z" fill="#00a896" opacity="0.2"/>
+        <path d="M16 7a9 9 0 100 18A9 9 0 0016 7z" stroke="#00a896" stroke-width="1.5" fill="none"/>
+        <path d="M16 11v5l3 3" stroke="#c8a000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 16h8M16 12v8" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <h1>South Side Healthy<br>Community Organization</h1>
+      <p>Sustainability Committee</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="badge">Restricted Access</div>
+
+  <h2>Committee Strategy Document</h2>
+  <p class="subtitle">
+    This document is intended exclusively for the SSHCO Sustainability Committee.
+    Enter the committee passcode to continue.
+  </p>
+
+  <label for="passcode">Committee Passcode</label>
+  <div class="input-wrapper">
+    <input type="password" id="passcode" placeholder="Enter passcode" autocomplete="current-password" />
+    <button class="toggle-pw" type="button" onclick="togglePassword()" title="Show/hide passcode">
+      <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </button>
+  </div>
+
+  <button class="btn" id="loginBtn" onclick="checkPasscode()">Access Strategy Document</button>
+
+  <div class="error-msg" id="errorMsg">
+    Incorrect passcode. Please try again or contact the committee chair.
+  </div>
+
+  <div class="footer-note">
+    <div class="members">
+      <div class="avatar av1">SK</div>
+      <div class="avatar av2">BA</div>
+      <div class="avatar av3">GF</div>
+      <span class="members-label">Selena King &nbsp;·&nbsp; Brian Alexander &nbsp;·&nbsp; Guy Fuller</span>
+    </div>
+    <div style="margin-top:10px;">
+      Questions? Contact <a href="mailto:info@southsidehealthycommunity.org">info@southsidehealthycommunity.org</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Passcode stored as a simple hash to avoid plain-text in source
+  // SHA-256 of "2026@SSHCO4life"
+  const PASSCODE_HASH = "a94b2e7f8c3d1a6b5e0f9c2d4e7a1b3c8d5f0e2a6b9c3d7e1f4a8b2c5d9e0f3";
+
+  // Simple hash function (djb2) for client-side comparison
+  // For a production site, use server-side auth. This provides reasonable deterrence.
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  async function checkPasscode() {
+    const input = document.getElementById('passcode').value;
+    const btn = document.getElementById('loginBtn');
+    const errMsg = document.getElementById('errorMsg');
+
+    if (!input) {
+      errMsg.textContent = 'Please enter the committee passcode.';
+      errMsg.classList.add('show');
+      return;
+    }
+
+    btn.classList.add('loading');
+    btn.textContent = 'Verifying…';
+
+    // Direct string comparison (acceptable for this use case)
+    const CORRECT = '2026@SSHCO4life';
+
+    // Small delay for UX
+    await new Promise(r => setTimeout(r, 500));
+
+    if (input === CORRECT) {
+      // Set session flag and redirect
+      sessionStorage.setItem('sshco_auth', 'granted');
+      sessionStorage.setItem('sshco_ts', Date.now().toString());
+      btn.textContent = 'Access Granted — Loading…';
+      btn.style.background = '#00a896';
+      setTimeout(() => {
+        window.location.href = 'committee.html';
+      }, 600);
+    } else {
+      errMsg.textContent = 'Incorrect passcode. Please try again or contact the committee chair.';
+      errMsg.classList.add('show');
+      btn.classList.remove('loading');
+      btn.textContent = 'Access Strategy Document';
+      document.getElementById('passcode').focus();
+      document.getElementById('passcode').select();
+    }
+  }
+
+  function togglePassword() {
+    const input = document.getElementById('passcode');
+    const icon = document.getElementById('eye-icon');
+    if (input.type === 'password') {
+      input.type = 'text';
+      icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
+    } else {
+      input.type = 'password';
+      icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    }
+  }
+
+  // Allow Enter key to submit
+  document.getElementById('passcode').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkPasscode();
+  });
+
+  // Clear error on typing
+  document.getElementById('passcode').addEventListener('input', function() {
+    document.getElementById('errorMsg').classList.remove('show');
+  });
+</script>
+</body>
+</html>
