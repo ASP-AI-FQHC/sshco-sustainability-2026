@@ -646,6 +646,39 @@ body {
   .board-model-grid { grid-template-columns:1fr; }
 }
 
+.board-visual-wrap {
+  margin: 26px 0 0;
+  background: linear-gradient(180deg,#ffffff 0%,#f8f9fb 100%);
+  border: 1px solid var(--gray);
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(26,39,68,0.06);
+  overflow: hidden;
+}
+.board-visual-header {
+  padding: 18px 22px 12px;
+}
+.board-visual-title {
+  font-family:'Montserrat',sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.board-visual-sub {
+  font-family:'Open Sans',sans-serif;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.board-visual-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-top: 1px solid var(--gray);
+}
+
 /* ─── PRINT ───────────────────────────────────────── */
 @media print {
   @page { size: A4; margin: 0; }
@@ -1049,6 +1082,15 @@ body {
           <span class="owner-name">Technology / Data / Risk Candidates</span>
         </div>
       </div>
+
+
+    <div class="board-visual-wrap">
+      <div class="board-visual-header">
+        <div class="board-visual-title">Board Development Workplan Framework</div>
+        <div class="board-visual-sub">Visual reference for the phased committee workplan covering concept development, outreach, vetting, onboarding, continuous improvement, and reporting.</div>
+      </div>
+      <img src="board_development_workplan_framework.png" alt="Board Development Workplan Framework showing 30-day concept and assessment, 45-day strategy and outreach, 60-day selection and vetting, 90-day pipeline and integration, continuous improvement, and reporting and evaluation." class="board-visual-img">
+    </div>
     </div>
   </div>
 </div>
