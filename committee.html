@@ -529,6 +529,123 @@ body {
 .hl-navy { color:var(--navy); font-weight:700; }
 .hl-red  { color:var(--red);  font-weight:700; }
 
+/* ─── BOARD DEVELOPMENT SECTION ───────────────────── */
+.board-intro { margin-bottom: 22px; }
+.board-list {
+  margin: 14px 0 0 0;
+  padding-left: 20px;
+}
+.board-list li {
+  font-family:'Open Sans',sans-serif;
+  font-size:13.5px;
+  line-height:1.72;
+  color:var(--body);
+  margin-bottom:6px;
+}
+.board-list li:last-child { margin-bottom:0; }
+.board-why {
+  margin-top:16px;
+  padding-top:14px;
+  border-top:1px solid var(--gray);
+  font-family:'Open Sans',sans-serif;
+  font-size:13.2px;
+  line-height:1.72;
+  color:var(--body);
+}
+.board-why strong {
+  display:block;
+  margin-bottom:6px;
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.1px;
+  text-transform:uppercase;
+  color:var(--navy);
+}
+.board-model {
+  background:var(--white);
+  border:1px solid var(--gray);
+  border-radius:16px;
+  box-shadow:0 4px 18px rgba(26,39,68,0.06);
+  padding:30px 34px;
+  margin:30px 0 22px;
+}
+.board-model-header {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.board-model-icon {
+  width:38px;
+  height:38px;
+  border-radius:10px;
+  background:rgba(58,181,198,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  flex-shrink:0;
+}
+.board-model-title {
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;
+  font-weight:800;
+  color:var(--navy);
+  line-height:1.3;
+}
+.board-model-sub {
+  font-family:'Open Sans',sans-serif;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+.board-model-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:18px;
+}
+.board-model-item {
+  border-radius:12px;
+  padding:16px 14px;
+  text-align:center;
+  border:1px solid var(--gray);
+  background:linear-gradient(180deg,#fcfcfc 0%,#f7f8fa 100%);
+}
+.board-model-item .bm-num {
+  display:block;
+  font-family:'Montserrat',sans-serif;
+  font-size:22px;
+  font-weight:800;
+  color:var(--navy);
+  margin-bottom:4px;
+}
+.board-model-item .bm-label {
+  display:block;
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  color:var(--muted);
+  line-height:1.5;
+}
+.board-model-note {
+  margin-top:18px;
+  font-family:'Open Sans',sans-serif;
+  font-size:13.5px;
+  line-height:1.75;
+  color:var(--body);
+}
+.board-model-note strong { color:var(--navy); }
+@media (max-width:900px) {
+  .board-model-grid { grid-template-columns:1fr 1fr; }
+}
+@media (max-width:640px) {
+  .board-model-grid { grid-template-columns:1fr; }
+}
+
 /* ─── PRINT ───────────────────────────────────────── */
 @media print {
   @page { size: A4; margin: 0; }
@@ -755,6 +872,127 @@ body {
   </div>
 </div>
 
+
+<!-- ══════ BOARD DEVELOPMENT SECTION ═══════════════════ -->
+<div class="sec-white">
+  <div class="page">
+    <div class="eyebrow">Governance Development Priority</div>
+    <h2 class="sec-h2">The Board We Should Be Building Now</h2>
+    <div class="rule"></div>
+
+    <p class="body-text board-intro">
+      Selena, Brian, and Guy should treat board development as part of SSHCO’s sustainability strategy, not as a separate governance exercise to revisit later. If SSHCO is going to secure multi-year philanthropic support, strengthen institutional credibility, and scale responsibly, it needs a future-state Board of Directors that is intentionally built for that next phase.
+    </p>
+
+    <p class="body-text">
+      The goal is not to fill seats. The goal is to assemble a board that can protect community trust, sharpen strategy, open the right doors, and provide the level of oversight expected by major funders, health-system partners, and institutional stakeholders. The strongest board for SSHCO will balance four distinct categories of leadership.
+    </p>
+
+    <div class="tracks-grid">
+      <div class="track-card tc-gold">
+        <div class="track-num">Board Category One</div>
+        <div class="track-title">Community Voice &amp; Trust Builders</div>
+        <div class="track-body">This category is non-negotiable. SSHCO’s legitimacy depends on governance that reflects the lived experience, credibility, and relational trust of the neighborhoods it serves.</div>
+        <ul class="board-list">
+          <li>Neighborhood leaders with recognized local standing</li>
+          <li>Leaders from community-based organizations</li>
+          <li>Resident representatives, including Medicaid recipients or caregivers</li>
+          <li>Faith-based leaders with deep South Side relationships</li>
+        </ul>
+        <div class="board-why"><strong>Why this matters</strong> Without trusted community representation, SSHCO risks looking institutionally designed rather than community-accountable. This group keeps the board grounded, credible, and aligned with what residents actually need.</div>
+        <span class="track-tag tt-high">Non-Negotiable</span>
+      </div>
+
+      <div class="track-card tc-teal">
+        <div class="track-num">Board Category Two</div>
+        <div class="track-title">Healthcare &amp; Public Health Expertise</div>
+        <div class="track-body">SSHCO also needs directors who understand how care is delivered, where the system breaks down, and what operational decisions are realistic in a safety-net environment.</div>
+        <ul class="board-list">
+          <li>FQHC executives and clinical leaders</li>
+          <li>Public-health officials or population-health leaders</li>
+          <li>Behavioral-health leaders</li>
+          <li>Care-coordination and community-health-worker experts</li>
+        </ul>
+        <div class="board-why"><strong>Why this matters</strong> This category gives the board clinical relevance and operational credibility. It helps SSHCO make decisions that are feasible in practice, not just attractive on paper.</div>
+        <span class="track-tag tt-urgent">Operational Credibility</span>
+      </div>
+
+      <div class="track-card tc-navy">
+        <div class="track-num">Board Category Three</div>
+        <div class="track-title">Systems, Infrastructure &amp; Innovation</div>
+        <div class="track-body">This is where SSHCO can create real strategic differentiation. The organization sits at the intersection of care delivery, data exchange, compliance, and scalable coordination — the board should reflect that reality.</div>
+        <ul class="board-list">
+          <li>Healthcare IT or cybersecurity leaders</li>
+          <li>Data-analytics and population-health experts</li>
+          <li>Medicaid or payer representatives</li>
+          <li>Technology strategists with implementation experience</li>
+        </ul>
+        <div class="board-why"><strong>Why this matters</strong> This group strengthens SSHCO’s ability to handle data responsibly, protect systems, quantify outcomes, and make a stronger case for payer alignment and future platform growth.</div>
+        <span class="track-tag tt-long">Critical Differentiation</span>
+      </div>
+
+      <div class="track-card tc-red">
+        <div class="track-num">Board Category Four</div>
+        <div class="track-title">Governance, Risk &amp; Sustainability</div>
+        <div class="track-body">Every high-functioning board needs adult-in-the-room leadership — people who can challenge assumptions, manage risk, and keep the organization disciplined as it grows.</div>
+        <ul class="board-list">
+          <li>Legal and regulatory professionals</li>
+          <li>Finance leaders, including CFOs or auditors</li>
+          <li>Fundraising and philanthropy leaders</li>
+          <li>Corporate strategy executives, with an optional public-safety liaison if useful</li>
+        </ul>
+        <div class="board-why"><strong>Why this matters</strong> This category brings oversight. It helps SSHCO govern responsibly, withstand scrutiny, and demonstrate to funders that growth will be matched by financial discipline and accountable leadership.</div>
+        <span class="track-tag tt-grow">Oversight &amp; Resilience</span>
+      </div>
+    </div>
+
+    <div class="board-model">
+      <div class="board-model-header">
+        <div class="board-model-icon">🏛️</div>
+        <div>
+          <div class="board-model-title">Recommended Board Composition</div>
+          <div class="board-model-sub">A practical model is a board of approximately 9–13 members</div>
+        </div>
+      </div>
+
+      <div class="board-model-grid">
+        <div class="board-model-item">
+          <span class="bm-num">3–4</span>
+          <span class="bm-label">Community / Faith / Resident Voices</span>
+        </div>
+        <div class="board-model-item">
+          <span class="bm-num">2–3</span>
+          <span class="bm-label">Healthcare &amp; Public Health Leaders</span>
+        </div>
+        <div class="board-model-item">
+          <span class="bm-num">2–3</span>
+          <span class="bm-label">Governance / Finance / Legal Leaders</span>
+        </div>
+        <div class="board-model-item">
+          <span class="bm-num">1–2</span>
+          <span class="bm-label">Technology / Data / Cyber Specialists</span>
+        </div>
+      </div>
+
+      <div class="board-model-note">
+        <strong>Bottom line:</strong> this board should be community-grounded, operationally credible, technically informed, and strong enough to govern through growth. That mix will give SSHCO more than representation — it will give SSHCO real stewardship capacity.
+      </div>
+    </div>
+
+    <div class="action-box">
+      <div class="action-box-header">
+        <span class="action-icon">⚡</span>
+        <span class="action-title">Committee Action — Board Development</span>
+      </div>
+      <p class="action-body">Selena, Brian, and Guy should use the next committee cycle to define the target board profile, map current gaps, and begin a prioritized recruitment list across all four categories. The immediate objective is not formal appointment. It is disciplined pipeline-building so that board formation supports fundraising, governance, and long-term sustainability instead of lagging behind them.</p>
+      <div class="action-owners">
+        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Community / Faith / Resident Pipeline</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Healthcare / Governance Candidates</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Technology / Data / Risk Candidates</span></div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══════ SECTION 3 — INSTITUTIONAL FUNDERS ════════════ -->
 <div class="sec-off">
