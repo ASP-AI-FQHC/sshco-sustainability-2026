@@ -180,12 +180,16 @@ body {
 .comm-members { display: flex; gap: 28px; flex-wrap: wrap; }
 .comm-member { display: flex; flex-direction: column; gap: 3px; }
 .comm-avatar {
-  width: 44px; height: 44px; border-radius: 50%;
+  width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800;
   color: var(--white); margin-bottom: 8px;
   border: 2px solid rgba(255,255,255,0.15);
 }
+.comm-avatar img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.comm-avatar.photo-top img { object-position: center top; }
 .av-teal  { background: linear-gradient(135deg, var(--teal), var(--teal2)); }
 .av-gold  { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); }
 .av-navy  { background: linear-gradient(135deg, #2a4080, var(--navy)); }
@@ -737,7 +741,7 @@ body {
       <div class="comm-label">Sustainability Committee Members</div>
       <div class="comm-members">
         <div class="comm-member">
-          <div class="comm-avatar av-teal">SK</div>
+          <div class="comm-avatar av-teal photo-top"><img src="selena_king.jpg" alt="Selena King"></div>
           <div class="comm-name">Selena King</div>
           <div class="comm-role">Committee Member</div>
         </div>
@@ -747,7 +751,7 @@ body {
           <div class="comm-role">Committee Member</div>
         </div>
         <div class="comm-member">
-          <div class="comm-avatar av-navy">GF</div>
+          <div class="comm-avatar av-navy"><img src="guy_fuller.jpg" alt="Guy Fuller"></div>
           <div class="comm-name">Guy Fuller</div>
           <div class="comm-role">Committee Member</div>
         </div>
