@@ -176,24 +176,33 @@ body {
 
 /* COMMITTEE BLOCK */
 .committee-block {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 14px; padding: 28px 32px;
-  max-width: 640px;
-  margin-bottom: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 18px; padding: 30px 32px;
+  max-width: 700px;
+  margin-bottom: 22px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.16);
+  backdrop-filter: blur(12px);
 }
 .comm-label {
-  font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
+  font-family: 'Montserrat', sans-serif; font-size: 9.5px; font-weight: 800;
+  letter-spacing: 3.2px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
 }
-.comm-members { display: flex; gap: 28px; flex-wrap: wrap; }
-.comm-member { display: flex; flex-direction: column; gap: 3px; }
+.comm-members { display: flex; gap: 18px; flex-wrap: wrap; }
+.comm-member {
+  display: flex; flex-direction: column; gap: 4px;
+  min-width: 168px; padding: 14px 14px 12px;
+  border-radius: 16px; background: rgba(255,255,255,0.045);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
 .comm-avatar {
-  width: 56px; height: 56px; border-radius: 50%; overflow: hidden;
+  width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 800;
-  color: var(--white); margin-bottom: 8px;
-  border: 2px solid rgba(255,255,255,0.15);
+  font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800;
+  color: var(--white); margin-bottom: 10px;
+  border: 2px solid rgba(255,255,255,0.16);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
 }
 .comm-avatar img {
   width: 100%; height: 100%; object-fit: cover; display: block;
@@ -203,10 +212,12 @@ body {
 .av-gold  { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: var(--navy); }
 .av-navy  { background: linear-gradient(135deg, #2a4080, var(--navy)); }
 .comm-name {
-  font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--white);
+  font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 800; color: var(--white);
+  letter-spacing: 0.2px;
 }
 .comm-role {
-  font-family: 'Open Sans', sans-serif; font-size: 11px; color: var(--muted);
+  font-family: 'Open Sans', sans-serif; font-size: 10.5px; color: rgba(255,255,255,0.58);
+  text-transform: uppercase; letter-spacing: 1px;
 }
 
 /* STATS ROW */
@@ -468,35 +479,58 @@ body {
 }
 .action-body:last-child { margin-bottom: 0; }
 .action-owners {
-  display:flex; gap:10px; flex-wrap:wrap; padding-top:14px;
-  border-top:1px solid rgba(245,166,35,0.2);
+  display:flex; gap:12px; flex-wrap:wrap; padding-top:16px;
+  border-top:1px solid rgba(245,166,35,0.18);
 }
 .owner-chip {
-  display:flex; align-items:center; gap:9px;
-  background:var(--white); border:1px solid rgba(245,166,35,0.3);
-  border-radius:22px; padding:6px 14px 6px 8px;
+  position:relative;
+  display:flex; align-items:center; gap:10px;
+  background:linear-gradient(180deg,#ffffff,#f7f9fc);
+  border:1px solid rgba(26,39,68,0.09);
+  border-radius:999px; padding:7px 16px 7px 9px;
+  box-shadow:0 8px 18px rgba(26,39,68,0.08);
+}
+.owner-chip::after {
+  content:''; position:absolute; inset:0;
+  border-radius:999px; pointer-events:none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
 }
 .owner-initial {
-  width:28px; height:28px; border-radius:50%; overflow:hidden;
+  width:34px; height:34px; border-radius:50%; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
-  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
-  color:var(--white); border:1.5px solid rgba(26,39,68,0.08); flex-shrink:0;
+  font-family:'Montserrat',sans-serif; font-size:10.5px; font-weight:800;
+  color:var(--white); border:2px solid rgba(255,255,255,0.92); flex-shrink:0;
+  box-shadow:0 6px 14px rgba(26,39,68,0.16);
 }
 .owner-initial img { width:100%; height:100%; object-fit:cover; display:block; }
 .owner-initial.photo-top img { object-position:center top; }
-.oi-sk { background:var(--teal); }
-.oi-ba { background:var(--gold); color:var(--navy); }
-.oi-gf { background:var(--navy); }
+.oi-sk { background:linear-gradient(135deg, var(--teal), var(--teal2)); }
+.oi-ba { background:linear-gradient(135deg, #f2c14e, var(--gold)); color:var(--navy); }
+.oi-gf { background:linear-gradient(135deg, #2a4080, var(--navy)); }
 .owner-name {
-  font-family:'Montserrat',sans-serif; font-size:11px; font-weight:700;
-  color:var(--navy); letter-spacing:0.3px;
+  font-family:'Montserrat',sans-serif; font-size:11.5px; font-weight:800;
+  color:var(--navy); letter-spacing:0.28px;
 }
 
 .member-ref-row {
-  display:flex; gap:10px; flex-wrap:wrap; margin:16px 0 24px;
+  display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 26px;
 }
 .member-ref-row .owner-chip {
-  box-shadow:0 2px 8px rgba(26,39,68,0.05);
+  box-shadow:0 10px 22px rgba(26,39,68,0.08);
+}
+.navy-full .member-ref-row .owner-chip,
+.navy-full .action-owners .owner-chip {
+  background:linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08));
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow:0 12px 28px rgba(0,0,0,0.18);
+}
+.navy-full .member-ref-row .owner-name,
+.navy-full .action-owners .owner-name {
+  color:var(--white);
+}
+.navy-full .member-ref-row .owner-chip::after,
+.navy-full .action-owners .owner-chip::after {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.16);
 }
 
 /* ─── CORPORATE TIER CARDS ────────────────────────── */
@@ -901,7 +935,7 @@ body {
       The three of us — Selena King, Brian Alexander, and Guy Fuller — have seen enough of this organization's work to know exactly what would be lost if SSHCO's funding were to expire without a clear path forward. We are not here to manage a sunset. We are here to prevent one. The sustainability of SSHCO is not a financial abstraction — it is a direct expression of our commitment to the South Side residents who have come to rely on this organization for the care, navigation, and support that no other single entity in their lives provides. With less than twelve months of current funding remaining, this committee is prepared to move with the clarity and urgency that this moment requires.
     </p>
 
-    <div class="member-ref-row">
+    <div class="member-ref-row" aria-label="Committee members">
       <div class="owner-chip"><div class="owner-initial oi-sk photo-top"><img src="selena_king.jpg" alt="Selena King"></div><span class="owner-name">Selena King</span></div>
       <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
       <div class="owner-chip"><div class="owner-initial oi-gf"><img src="guy_fuller.jpg" alt="Guy Fuller"></div><span class="owner-name">Guy Fuller</span></div>
@@ -1568,7 +1602,7 @@ body {
       Selena, Brian, and Guy — the organization we are working to sustain has already done the hardest part. It has earned the trust of thousands of South Side residents who had every reason not to trust a healthcare system that had historically underserved them. It has built navigation infrastructure that no single hospital or clinic could replicate alone. It has proven, through 80,000+ patient interactions, that its model works. What the next twelve months require from this committee is not a proof of concept. The proof is already in the numbers, in the patient stories, in the appointments kept and the crises averted across 21 sites and 15 zip codes.
     </p>
 
-    <div class="member-ref-row">
+    <div class="member-ref-row" aria-label="Committee members">
       <div class="owner-chip"><div class="owner-initial oi-sk photo-top"><img src="selena_king.jpg" alt="Selena King"></div><span class="owner-name">Selena King</span></div>
       <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
       <div class="owner-chip"><div class="owner-initial oi-gf"><img src="guy_fuller.jpg" alt="Guy Fuller"></div><span class="owner-name">Guy Fuller</span></div>
