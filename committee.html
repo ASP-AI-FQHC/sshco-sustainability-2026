@@ -638,6 +638,26 @@ body {
   background:linear-gradient(180deg,#fffaf0 0%, #fffdf7 100%);
   border-color:rgba(230,177,72,0.20);
 }
+.relational-host-profile {
+  display:flex; align-items:center; gap:16px; margin-bottom:12px;
+}
+.relational-host-photo {
+  width:104px; height:104px; flex:0 0 104px; border-radius:50%;
+  padding:6px; background:linear-gradient(135deg, #0c2d5a 0%, #2c84c6 100%);
+  box-shadow:0 12px 24px rgba(12,45,90,0.18);
+}
+.relational-host-photo img {
+  width:100%; height:100%; display:block; object-fit:cover; border-radius:50%;
+  border:3px solid rgba(255,255,255,0.96);
+}
+.relational-host-name {
+  font-family:'Montserrat',sans-serif; font-size:17px; font-weight:800;
+  color:var(--navy); line-height:1.2; margin-bottom:4px;
+}
+.relational-host-role {
+  font-family:'Open Sans',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:1.4px; text-transform:uppercase; color:var(--muted);
+}
 .relational-label {
   font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
   letter-spacing:1.6px; text-transform:uppercase; color:var(--muted);
@@ -1136,7 +1156,14 @@ body {
           <div class="relational-copy">Rather than relying on one-off meetings or cold outreach, this section proposes a structured cadence of salons, executive dinners, and roundtables hosted by trusted institutional partners. The gatherings function as a <span class="hl-navy">relational execution layer</span> for the full sustainability strategy: no formal pitch in the room, a strong post-event follow-up process, and deliberate movement of attendees into deeper cultivation conversations.</div>
         </div>
         <div class="relational-host-note">
-          <div class="relational-label">Leadership concept</div>
+          <div class="relational-host-profile">
+            <div class="relational-host-photo"><img src="kimberly_hobson.png" alt="Kimberly Hobson"></div>
+            <div>
+              <div class="relational-label">Leadership concept</div>
+              <div class="relational-host-name">Kimberly Hobson</div>
+              <div class="relational-host-role">Lead Convener &amp; Relationship Steward</div>
+            </div>
+          </div>
           <div class="relational-copy">Kimberly Hobson is positioned in this proposal as the lead convener and relationship steward for the gathering model. Her role is to help translate strategy into disciplined human engagement — hosted conversations that create confidence, reciprocity, and momentum across all four tracks.</div>
         </div>
       </div>
