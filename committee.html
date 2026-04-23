@@ -156,6 +156,15 @@ body {
   color: rgba(255,255,255,0.65); margin-bottom: 36px; max-width: 580px; line-height: 1.4;
 }
 
+.cover-period {
+  display:inline-block;
+  font-family:'Montserrat',sans-serif; font-size:11px; font-weight:800;
+  letter-spacing:2.4px; text-transform:uppercase; color:var(--gold);
+  border:1px solid rgba(245,166,35,0.35); border-radius:999px;
+  padding:7px 12px; margin-top:-18px; margin-bottom:28px;
+  background:rgba(255,255,255,0.04);
+}
+
 .cover-rule {
   width: 56px; height: 4px; background: var(--gold); border-radius: 2px; margin-bottom: 36px;
 }
@@ -463,16 +472,18 @@ body {
   border-top:1px solid rgba(245,166,35,0.2);
 }
 .owner-chip {
-  display:flex; align-items:center; gap:7px;
+  display:flex; align-items:center; gap:9px;
   background:var(--white); border:1px solid rgba(245,166,35,0.3);
-  border-radius:20px; padding:5px 14px;
+  border-radius:22px; padding:6px 14px 6px 8px;
 }
 .owner-initial {
-  width:22px; height:22px; border-radius:50%;
+  width:28px; height:28px; border-radius:50%; overflow:hidden;
   display:flex; align-items:center; justify-content:center;
   font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
-  color:var(--white);
+  color:var(--white); border:1.5px solid rgba(26,39,68,0.08); flex-shrink:0;
 }
+.owner-initial img { width:100%; height:100%; object-fit:cover; display:block; }
+.owner-initial.photo-top img { object-position:center top; }
 .oi-sk { background:var(--teal); }
 .oi-ba { background:var(--gold); color:var(--navy); }
 .oi-gf { background:var(--navy); }
@@ -552,6 +563,79 @@ body {
   border-top: 1px solid rgba(255,255,255,0.10); font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
 }
+
+.boardroom-model { margin: 20px 0 34px; }
+.boardroom-title {
+  font-family:'Montserrat',sans-serif; font-size:22px; font-weight:800;
+  color:var(--navy); line-height:1.25; margin-bottom:10px;
+}
+.boardroom-sub {
+  font-family:'Open Sans',sans-serif; font-size:14px; line-height:1.8;
+  color:var(--body); margin-bottom:24px;
+}
+.rev-summary-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:18px 0 24px;
+}
+.rev-summary-card {
+  background:linear-gradient(180deg,#ffffff,#fbfcfe); border:1px solid var(--gray);
+  border-radius:14px; padding:22px 24px; box-shadow:0 3px 14px rgba(26,39,68,0.05);
+}
+.rev-summary-label {
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
+  letter-spacing:1.8px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;
+}
+.rev-summary-value {
+  font-family:'Montserrat',sans-serif; font-size:28px; font-weight:900;
+  color:var(--navy); line-height:1.05; margin-bottom:8px;
+}
+.rev-summary-note {
+  font-family:'Open Sans',sans-serif; font-size:12.5px; line-height:1.7; color:var(--body);
+}
+.rev-track-grid {
+  display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin:10px 0 24px;
+}
+.rev-track-card {
+  background:var(--white); border:1px solid var(--gray); border-radius:14px;
+  padding:24px 24px 22px; box-shadow:0 3px 14px rgba(26,39,68,0.05);
+}
+.rev-track-card.gold { border-top:4px solid var(--gold); }
+.rev-track-card.teal { border-top:4px solid var(--teal); }
+.rev-track-card.navy { border-top:4px solid var(--navy); }
+.rev-track-card.green { border-top:4px solid #27ae60; }
+.rev-track-kicker {
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
+  letter-spacing:1.8px; text-transform:uppercase; color:var(--muted); margin-bottom:8px;
+}
+.rev-track-title {
+  font-family:'Montserrat',sans-serif; font-size:16px; font-weight:800;
+  color:var(--navy); line-height:1.3; margin-bottom:10px;
+}
+.rev-track-metric {
+  font-family:'Montserrat',sans-serif; font-size:21px; font-weight:900;
+  color:var(--navy); margin-bottom:10px; line-height:1.15;
+}
+.rev-track-body {
+  font-family:'Open Sans',sans-serif; font-size:13px; line-height:1.75; color:var(--body);
+}
+.exec-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:18px;
+}
+.exec-card {
+  background:rgba(58,181,198,0.04); border:1px solid rgba(58,181,198,0.16);
+  border-radius:14px; padding:20px 22px;
+}
+.exec-phase {
+  font-family:'Montserrat',sans-serif; font-size:10px; font-weight:800;
+  letter-spacing:1.8px; text-transform:uppercase; color:var(--teal); margin-bottom:8px;
+}
+.exec-title {
+  font-family:'Montserrat',sans-serif; font-size:15px; font-weight:800;
+  color:var(--navy); margin-bottom:8px;
+}
+.exec-body {
+  font-family:'Open Sans',sans-serif; font-size:12.8px; line-height:1.75; color:var(--body);
+}
+.exec-body strong { color:var(--navy); }
 .board-why {
   margin-top:16px;
   padding-top:14px;
@@ -737,9 +821,10 @@ body {
     <div class="cover-eyebrow">Sustainability Committee — Working Strategy</div>
     <div class="cover-title">SSHCO Financial<br><span>Sustainability</span><br>Strategy</div>
     <div class="cover-subtitle">Philanthropy, Corporate Partnership &amp; AI-Enabled Execution</div>
+    <div class="cover-period">Q2 2026</div>
     <div class="cover-rule"></div>
     <div class="cover-desc">
-      This document is prepared exclusively for the SSHCO Sustainability Committee. It contains our four-track sustainability strategy, a prioritized map of institutional and corporate funding targets, a board-development framework, an AI-enabled execution plan, and a 12-month action agenda. It is intended as a living working document to guide the committee's outreach, relationship-building, and revenue development activities as we approach the one-year funding cliff.
+      This document is prepared exclusively for the SSHCO Sustainability Committee. It contains our four-track sustainability strategy, a prioritized map of institutional and corporate funding targets, a board-development framework, a board-ready AI-driven revenue model, and a 12-month action agenda. It is intended as a living working document to guide the committee's outreach, relationship-building, and revenue development activities as we approach the one-year funding cliff.
     </div>
 
     <div class="committee-block">
@@ -903,14 +988,84 @@ body {
       </div>
       <p class="action-body">The committee should assign primary track ownership at our next meeting. Each track requires consistent relationship management that a single owner can drive. All three members should review the full strategy, identify where their personal and professional networks create the strongest entry points, and come prepared to claim lead responsibility for at least one track.</p>
       <div class="action-owners">
-        <div class="owner-chip"><div class="owner-initial oi-sk">SK</div><span class="owner-name">Selena King</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-sk photo-top"><img src="selena_king.jpg" alt="Selena King"></div><span class="owner-name">Selena King</span></div>
         <div class="owner-chip"><div class="owner-initial oi-ba">BA</div><span class="owner-name">Brian Alexander</span></div>
-        <div class="owner-chip"><div class="owner-initial oi-gf">GF</div><span class="owner-name">Guy Fuller</span></div>
+        <div class="owner-chip"><div class="owner-initial oi-gf"><img src="guy_fuller.jpg" alt="Guy Fuller"></div><span class="owner-name">Guy Fuller</span></div>
       </div>
     </div>
 
     <div class="callout-teal" style="margin-top:24px;">
-      <p><strong>AI as a cross-cutting execution layer:</strong> AI does not belong to any single track. It runs underneath all four — helping the committee draft faster, research smarter, analyze more rigorously, and follow through more consistently. Every track owner should treat AI tools as part of their standard operating toolkit, with human review before anything goes external.</p>
+      <p><strong>Got it—let’s build something you can confidently take into a boardroom and defend.</strong></p>
+    </div>
+
+    <div class="funder-box boardroom-model">
+      <div class="boardroom-title">Board-Ready AI-Driven Revenue Model for SSHCO</div>
+      <div class="boardroom-sub">This model translates SSHCO’s operating value into a diversified revenue architecture the board can evaluate, authorize, and monitor. The working objective over the next 12–24 months is to move SSHCO toward <span class="hl-navy">$1M–$3M in diversified annual revenue</span> by combining value-based care contracts, AI-enhanced care coordination services, community health intelligence, and stronger grant performance.</div>
+
+      <div class="rev-summary-grid">
+        <div class="rev-summary-card">
+          <div class="rev-summary-label">12–24 Month Goal</div>
+          <div class="rev-summary-value">$1M–$3M</div>
+          <div class="rev-summary-note">Diversified annual revenue objective, structured to reduce single-source dependency and create a more durable operating base.</div>
+        </div>
+        <div class="rev-summary-card">
+          <div class="rev-summary-label">Revenue Projection</div>
+          <div class="rev-summary-value">$1.0M to $2.1M+</div>
+          <div class="rev-summary-note">Conservative case: approximately $1.0M. Target case: approximately $2.1M+, with upside if value-based contracts and institutional partnerships convert on schedule.</div>
+        </div>
+        <div class="rev-summary-card">
+          <div class="rev-summary-label">Investment &amp; Break-Even</div>
+          <div class="rev-summary-value">$375K–$800K</div>
+          <div class="rev-summary-note">Estimated Year 1 investment requirement, with a projected break-even point in roughly 12–18 months if execution milestones are met.</div>
+        </div>
+      </div>
+
+      <div class="rev-track-grid">
+        <div class="rev-track-card gold">
+          <div class="rev-track-kicker">Pillar 1</div>
+          <div class="rev-track-title">Value-Based Care</div>
+          <div class="rev-track-metric">$500K–$1M potential in Years 1–2</div>
+          <div class="rev-track-body">Working economics: <span class="hl-navy">$10–$30 PMPM</span> and/or <span class="hl-navy">10%–25% shared savings</span>. Illustrative case: <span class="hl-navy">2,000 patients at $20 PMPM = $480K annually</span>, before upside from shared-savings structures.</div>
+        </div>
+        <div class="rev-track-card teal">
+          <div class="rev-track-kicker">Pillar 2</div>
+          <div class="rev-track-title">AI-Enhanced Care Coordination</div>
+          <div class="rev-track-metric">$300K illustrative annual run-rate</div>
+          <div class="rev-track-body">Pricing range: <span class="hl-navy">$50–$150 per patient annually</span> or <span class="hl-navy">$2K–$10K per month per organization</span>. Illustrative case: <span class="hl-navy">5 organizations at $5K per month = $300K annually</span>.</div>
+        </div>
+        <div class="rev-track-card navy">
+          <div class="rev-track-kicker">Pillar 3</div>
+          <div class="rev-track-title">Community Health Intelligence Platform</div>
+          <div class="rev-track-metric">$200K illustrative annual run-rate</div>
+          <div class="rev-track-body">Potential partner fee range: <span class="hl-navy">$25K–$100K annually</span>. Illustrative case: <span class="hl-navy">4 partners at $50K = $200K annually</span> for dashboards, reporting, and population-health insight products.</div>
+        </div>
+        <div class="rev-track-card green">
+          <div class="rev-track-kicker">Pillar 4</div>
+          <div class="rev-track-title">Grant Optimization</div>
+          <div class="rev-track-metric">+$300K annual upside</div>
+          <div class="rev-track-body">If SSHCO preserves and improves its current <span class="hl-navy">$1M funding base</span>, a <span class="hl-navy">30% lift</span> through stronger targeting, packaging, and proposal quality yields approximately <span class="hl-navy">+$300K per year</span>.</div>
+        </div>
+      </div>
+
+      <div class="boardroom-sub" style="margin-bottom:0;">The board should treat this as a disciplined build plan rather than a speculative innovation exercise. Each pillar has different contracting mechanics, sales cycles, and evidence requirements, but together they create a credible path from short-term stabilization to medium-term diversification.</div>
+
+      <div class="exec-grid">
+        <div class="exec-card">
+          <div class="exec-phase">0–3 Months</div>
+          <div class="exec-title">Pilot</div>
+          <div class="exec-body">Validate the first use cases, define the operating model, and confirm priority partners. <strong>Board decision point:</strong> approve initial investment range, pilot scope, and leadership accountability.</div>
+        </div>
+        <div class="exec-card">
+          <div class="exec-phase">3–6 Months</div>
+          <div class="exec-title">Measurement</div>
+          <div class="exec-body">Track conversion, utilization, avoided-cost evidence, and grant lift. <strong>Board decision point:</strong> review pilot performance, authorize refinement, and confirm which pillars move into active commercialization.</div>
+        </div>
+        <div class="exec-card">
+          <div class="exec-phase">6–12 Months</div>
+          <div class="exec-title">Expansion</div>
+          <div class="exec-body">Scale the strongest channels, convert institutional relationships into signed commitments, and build the next-year pipeline. <strong>Board decision point:</strong> approve expansion, staffing, and 2027 diversification targets.</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
