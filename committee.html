@@ -34,6 +34,7 @@
   --red:     #e84040;
   --page-max:1040px;
   --page-gutter:64px;
+  --page-shell-inset:max(var(--page-gutter), calc((100vw - var(--page-max)) / 2));
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -79,7 +80,7 @@ body {
 }
 
 .cover-top {
-  padding: 48px max(var(--page-gutter), calc((100vw - var(--page-max)) / 2)) 0;
+  padding: 48px var(--page-shell-inset) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -126,7 +127,7 @@ body {
   padding: 8px 20px;
   display: inline-flex; align-items: center; gap: 8px;
   position: relative; z-index: 2;
-  margin: 28px 0 0 max(var(--page-gutter), calc((100vw - var(--page-max)) / 2));
+  margin: 28px 0 0 var(--page-shell-inset);
   align-self: flex-start;
 }
 .conf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); }
@@ -136,7 +137,7 @@ body {
 }
 
 .cover-main {
-  padding: 40px max(var(--page-gutter), calc((100vw - var(--page-max)) / 2)) 40px;
+  padding: 40px var(--page-shell-inset) 40px;
   flex: 1; display: flex; flex-direction: column; justify-content: center;
   position: relative; z-index: 2;
 }
@@ -238,7 +239,7 @@ body {
 .cs-sep { width:1px; background:rgba(255,255,255,0.12); height:36px; align-self:center; }
 
 .cover-bottom {
-  padding: 22px max(var(--page-gutter), calc((100vw - var(--page-max)) / 2)); border-top: 1px solid rgba(255,255,255,0.09);
+  padding: 22px var(--page-shell-inset); border-top: 1px solid rgba(255,255,255,0.09);
   background: rgba(0,0,0,0.18);
   display: flex; align-items: center; justify-content: space-between;
   position: relative; z-index: 2;
@@ -574,9 +575,14 @@ body {
 
 /* ─── DOC FOOTER ──────────────────────────────────── */
 .doc-footer {
-  background:#060f1e; padding:24px 64px;
+  background:#060f1e; padding:24px var(--page-shell-inset);
   display:flex; align-items:center; justify-content:space-between;
   flex-wrap:wrap; gap:10px; border-top:1px solid rgba(255,255,255,0.06);
+}
+
+.impact-shell {
+  padding: 0 var(--page-shell-inset);
+  background: var(--offwhite);
 }
 .doc-footer p { font-family:'Open Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.30); }
 .doc-footer a { color:var(--teal); text-decoration:none; }
@@ -1073,7 +1079,7 @@ body {
 </div>
 
 <!-- ══════ IMPACT BAR ════════════════════════════════════ -->
-<div style="padding:0 64px; background:var(--offwhite);">
+<div class="impact-shell">
   <div class="impact-bar">
     <div class="is">
       <span class="is-num">80,000<span>+</span></span>
